@@ -1,16 +1,14 @@
-from typing import List
 
 
-def all_prefixes(string: str) -> List[str]:
-    """ Return list of all prefixes from shortest to longest of the input string
-    >>> all_prefixes('abc')
-    ['a', 'ab', 'abc']
+def string_sequence(n: int) -> str:
+    """ Return a string containing space-delimited numbers starting from 0 upto n inclusive.
+    >>> string_sequence(0)
+    '0'
+    >>> string_sequence(5)
+    '0 1 2 3 4 5'
     """
-    result = []
-
-    for i in range(len(string)-1):
-        result.append(string[:i+1])
-    return result
-def check(all_prefixes):
-    assert all_prefixes('abc') == ['a', 'ab', 'abc']
-check(all_prefixes)
+    return ' '.join([str(x) for x in range(n)])
+def check(string_sequence):
+    assert string_sequence(0) == '0'
+    assert string_sequence(5) == '0 1 2 3 4 5'
+check(string_sequence)
