@@ -1,23 +1,36 @@
 
-def triangle_area(a, b, c):
+def will_it_fly(q,w):
     '''
-    Given the lengths of the three sides of a triangle. Return the area of
-    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
-    Otherwise return -1
-    Three sides make a valid triangle when the sum of any two sides is greater 
-    than the third side.
+    Write a function that returns True if the object q will fly, and False otherwise.
+    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+
     Example:
-    triangle_area(3, 4, 5) == 6.00
-    triangle_area(1, 2, 10) == -1
+    will_it_fly([1, 2], 5) ➞ False 
+    # 1+2 is less than the maximum possible weight, but it's unbalanced.
+
+    will_it_fly([3, 2, 3], 1) ➞ False
+    # it's balanced, but 3+2+3 is more than the maximum possible weight.
+
+    will_it_fly([3, 2, 3], 9) ➞ True
+    # 3+2+3 is less than the maximum possible weight, and it's balanced.
+
+    will_it_fly([3], 5) ➞ True
+    # 3 is less than the maximum possible weight, and it's balanced.
     '''
-    if a + b <= c or a + c <= b or b + c <= a:
-        return -1 
-    s = (a + b + c)    
-    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
-    area = round(area, 2)
-    return area
-def check(triangle_area):
+    if sum(q) > w:
+        return False
+
+    i, j = 0, len(q)-1
+    while i<j:
+        if q[i] == q[j]:
+            return False
+        i+=1
+        j-=1
+    return True
+def check(will_it_fly):
     # Check some simple cases
-    assert triangle_area(3, 4, 5) == 6.00, "This prints if this assert fails 1 (good for debugging!)"
-    assert triangle_area(1, 2, 10) == -1
-check(triangle_area)
+    assert will_it_fly([3, 2, 3], 9) is True
+    assert will_it_fly([1, 2], 5) is False
+    assert will_it_fly([3], 5) is True
+    assert will_it_fly([3, 2, 3], 1) is False
+check(will_it_fly)
