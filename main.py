@@ -1,21 +1,22 @@
 
-def double_the_difference(lst):
-    '''
-    Given a list of numbers, return the sum of squares of the numbers
-    in the list that are odd. Ignore numbers that are negative or not integers.
+def compare(game,guess):
+    """I think we all remember that feeling when the result of some long-awaited
+    event is finally known. The feelings and thoughts you have at that moment are
+    definitely worth noting down and comparing.
+    Your task is to determine if a person correctly guessed the results of a number of matches.
+    You are given two arrays of scores and guesses of equal length, where each index shows a match. 
+    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,
+    the value is 0, and if not, the value is the absolute difference between the guess and the score.
     
-    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10
-    double_the_difference([-1, -2, 0]) == 0
-    double_the_difference([9, -2]) == 81
-    double_the_difference([0]) == 0  
-   
-    If the input list is empty, return 0.
-    '''
-    return sum([i**2 for i in lst if i > 0 and "." not in str(i)])
-def check(double_the_difference):
+    
+    example:
+
+    compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
+    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
+    """
+    return [abs(x-y)+abs(y-x) for x,y in zip(game,guess)]
+def check(compare):
     # Check some simple cases
-    assert double_the_difference([1,3,2,0]) == 10 , "This prints if this assert fails 1 (good for debugging!)"
-    assert double_the_difference([-1,-2,0]) == 0 , "This prints if this assert fails 2 (good for debugging!)"
-    assert double_the_difference([9,-2]) == 81 , "This prints if this assert fails 3 (good for debugging!)"
-    assert double_the_difference([0]) == 0 , "This prints if this assert fails 4 (good for debugging!)"
-check(double_the_difference)
+    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], "This prints if this assert fails 1 (good for debugging!)"
+    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2])==[4,4,1,0,0,6]
+check(compare)
