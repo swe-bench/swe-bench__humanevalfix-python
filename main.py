@@ -1,21 +1,32 @@
 
-def is_bored(S):
-    """
-    You'll be given a string of words, and your task is to count the number
-    of boredoms. A boredom is a sentence that starts with the word "I".
-    Sentences are delimited by '.', '?' or '!'.
-   
-    For example:
-    >>> is_bored("Hello world")
-    0
-    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
-    1
-    """
-    import re
-    sentences = re.split(r'[.?!]\s*', S)
-    return sum(sentence[0:2] == ' I' for sentence in sentences)
-def check(is_bored):
+def any_int(x, y, z):
+    '''
+    Create a function that takes 3 numbers.
+    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.
+    Returns false in any other cases.
+    
+    Examples
+    any_int(5, 2, 7) ➞ True
+    
+    any_int(3, 2, 2) ➞ False
+
+    any_int(3, -2, 1) ➞ True
+    
+    any_int(3.6, -2.2, 2) ➞ False
+  
+
+    
+    '''
+    
+    if isinstance(x,int) and isinstance(y,int) and isinstance(z,int):
+        if (x+y==z) or (y+z==x):
+            return True
+        return False
+    return False
+def check(any_int):
     # Check some simple cases
-    assert is_bored("Hello world") == 0, "Test 1"
-    assert is_bored("The sky is blue. The sun is shining. I love this weather") == 1, "Test 3"
-check(is_bored)
+    assert any_int(5, 2, 7)==True, "This prints if this assert fails 1 (good for debugging!)"
+    assert any_int(3, 2, 2)==False, "This prints if this assert fails 2 (good for debugging!)"
+    assert any_int(3, -2, 1)==True, "This prints if this assert fails 5 (good for debugging!)"
+    assert any_int(3.6, -2.2, 2)==False, "This prints if this assert fails 6 (good for debugging!)"
+check(any_int)
