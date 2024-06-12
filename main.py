@@ -1,11 +1,15 @@
+from typing import List
 
 
-def flip_case(string: str) -> str:
-    """ For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
-    >>> flip_case('Hello')
-    'hELLO'
+def concatenate(strings: List[str]) -> str:
+    """ Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
     """
-    return string.lower()
-def check(flip_case):
-    assert flip_case('Hello') == 'hELLO'
-check(flip_case)
+    return ' '.join(strings)
+def check(concatenate):
+    assert concatenate([]) == ''
+    assert concatenate(['a', 'b', 'c']) == 'abc'
+check(concatenate)
