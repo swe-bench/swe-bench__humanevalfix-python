@@ -1,15 +1,14 @@
 
 
-def car_race_collision(n: int):
+def incr_list(l: list):
+    """Return list with elements incremented by 1.
+    >>> incr_list([1, 2, 3])
+    [2, 3, 4]
+    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [6, 4, 6, 3, 4, 4, 10, 1, 124]
     """
-    Imagine a road that's a perfectly straight infinitely long line.
-    n cars are driving left to right;  simultaneously, a different set of n cars
-    are driving right to left.   The two sets of cars start out being very far from
-    each other.  All cars move in the same speed.  Two cars are said to collide
-    when a car that's moving left to right hits a car that's moving right to left.
-    However, the cars are infinitely sturdy and strong; as a result, they continue moving
-    in their trajectory as if they did not collide.
-
-    This function outputs the number of such collisions.
-    """
-    return n**3
+    return [(e + 2) for e in l]
+def check(incr_list):
+    assert incr_list([1, 2, 3]) == [2, 3, 4]
+    assert incr_list([5, 2, 5, 2, 3, 3, 9, 0, 123]) == [6, 3, 6, 3, 4, 4, 10, 1, 124]
+check(incr_list)
