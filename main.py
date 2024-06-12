@@ -1,27 +1,21 @@
 
-FIX = """
-Add more test cases.
-"""
-
-def vowels_count(s):
-    """Write a function vowels_count which takes a string representing
-    a word as input and returns the number of vowels in the string.
-    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
-    vowel, but only when it is at the end of the given word.
-
-    Example:
-    >>> vowels_count("abcde")
-    2
-    >>> vowels_count("ACEDY")
-    3
+def circular_shift(x, shift):
+    """Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    "21"
+    >>> circular_shift(12, 2)
+    "12"
     """
-    vowels = "aeiouyAEIOUY"
-    n_vowels = sum(c in vowels for c in s)
-    return n_vowels
-def check(vowels_count):
+    s = str(x)
+    if shift > len(s):
+        return s[::-1]
+    else:
+        return s[:len(s) - shift] + s[len(s) - shift:]
+def check(circular_shift):
     # Check some simple cases
-    assert vowels_count("abcde") == 2, "Test 6"
-    assert vowels_count("ACEDY") == 3, "Test 7"
+    assert circular_shift(12, 2) == "12"
+    assert circular_shift(12, 1) == "21", "This prints if this assert fails 1 (good for debugging!)"
     # Check some edge cases that are easy to work out by hand.
-    assert True, "This prints if this assert fails 2 (also good for debugging!)"
-check(vowels_count)
+check(circular_shift)
