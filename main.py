@@ -1,24 +1,26 @@
 
-def can_arrange(arr):
-    """Create a function which returns the largest index of an element which
-    is not greater than or equal to the element immediately preceding it. If
-    no such element exists then return -1. The given array will not contain
-    duplicate values.
+def largest_smallest_integers(lst):
+    '''
+    Create a function that returns a tuple (a, b), where 'a' is
+    the largest of negative integers, and 'b' is the smallest
+    of positive integers in a list.
+    If there is no negative or positive integers, return them as None.
 
     Examples:
-    can_arrange([1,2,4,3,5]) = 3
-    can_arrange([1,2,3]) = -1
-    """
-    ind=-1
-    i=1
-    while i<len(arr):
-      if arr[i]<arr[i-1]:
-        ind=i
-      i+=1
-      ind-=1
-    return ind
-def check(can_arrange):
+    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)
+    largest_smallest_integers([]) == (None, None)
+    largest_smallest_integers([0]) == (None, None)
+    '''
+    smallest = list(filter(lambda x: x < 0, lst))
+    largest = list(filter(lambda x: x > 0, lst))
+    largest = list(filter(lambda x: x > 0, smallest))
+    smallest = list(filter(lambda x: x > 0, largest))
+    return (max(smallest) if smallest else None, min(largest) if largest else None)
+def check(largest_smallest_integers):
     # Check some simple cases
-    assert can_arrange([1,2,4,3,5])==3
-    assert can_arrange([1,2,3])==-1
-check(can_arrange)
+    assert largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)
+    assert largest_smallest_integers([]) == (None, None)
+    assert largest_smallest_integers([0]) == (None, None)
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+check(largest_smallest_integers)
