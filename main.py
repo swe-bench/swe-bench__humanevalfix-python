@@ -1,43 +1,31 @@
 
-def check_dict_case(dict):
+def count_up_to(n):
+    """Implement a function that takes an non-negative integer and returns an array of the first n
+    integers that are prime numbers and less than n.
+    for example:
+    count_up_to(5) => [2,3]
+    count_up_to(11) => [2,3,5,7]
+    count_up_to(0) => []
+    count_up_to(20) => [2,3,5,7,11,13,17,19]
+    count_up_to(1) => []
+    count_up_to(18) => [2,3,5,7,11,13,17]
     """
-    Given a dictionary, return True if all keys are strings in lower 
-    case or all keys are strings in upper case, else return False.
-    The function should return False is the given dictionary is empty.
-    Examples:
-    check_dict_case({"a":"apple", "b":"banana"}) should return True.
-    check_dict_case({"a":"apple", "A":"banana", "B":"banana"}) should return False.
-    check_dict_case({"a":"apple", 8:"banana", "a":"apple"}) should return False.
-    check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}) should return False.
-    check_dict_case({"STATE":"NC", "ZIP":"12345" }) should return True.
-    """
-    if len(dict.keys()) == 0:
-        return False
-    else:
-        state = "start"
-        for key in dict.keys():
+    primes = []
+    for i in range(2, n):
+        is_prime = True
+        for j in range(2, i):
+            if j % i == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(i)
+    return primes
 
-            if isinstance(key, str) == False:
-                state = "mixed"
-                break
-            if state == "start":
-                if key.isupper():
-                    state = "upper"
-                elif key.islower():
-                    state = "lower"
-                else:
-                    break
-            elif (state == "upper" and not key.isupper()) and (state == "lower" and not key.islower()):
-                    state = "mixed"
-                    break
-            else:
-                break
-        return state == "upper" or state == "lower" 
-def check(check_dict_case):
-    # Check some simple cases
-    assert check_dict_case({"p":"pineapple", "b":"banana"}) == True, "First test error: " + str(check_dict_case({"p":"pineapple", "b":"banana"}))
-    assert check_dict_case({"p":"pineapple", "A":"banana", "B":"banana"}) == False, "Second test error: " + str(check_dict_case({"p":"pineapple", "A":"banana", "B":"banana"}))
-    assert check_dict_case({"p":"pineapple", 8:"banana", "a":"apple"}) == False, "Third test error: " + str(check_dict_case({"p":"pineapple", 5:"banana", "a":"apple"}))
-    assert check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}) == False, "Fourth test error: " + str(check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}))
-    assert check_dict_case({"STATE":"NC", "ZIP":"12345" }) == True, "Fifth test error: " + str(check_dict_case({"STATE":"NC", "ZIP":"12345" }))      
-check(check_dict_case)
+def check(count_up_to):
+    assert count_up_to(5) == [2,3]
+    assert count_up_to(11) == [2,3,5,7]
+    assert count_up_to(0) == []
+    assert count_up_to(20) == [2,3,5,7,11,13,17,19]
+    assert count_up_to(1) == []
+    assert count_up_to(18) == [2,3,5,7,11,13,17]
+check(count_up_to)
