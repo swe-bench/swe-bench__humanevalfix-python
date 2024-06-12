@@ -1,27 +1,23 @@
 
 
-def same_chars(s0: str, s1: str):
+def fib(n: int):
+    """Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
     """
-    Check if two words have the same characters.
-    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
-    True
-    >>> same_chars('abcd', 'dddddddabc')
-    True
-    >>> same_chars('dddddddabc', 'abcd')
-    True
-    >>> same_chars('eabcd', 'dddddddabc')
-    False
-    >>> same_chars('abcd', 'dddddddabce')
-    False
-    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
-    False
-    """
-    return s0 == s1
-def check(same_chars):
-    assert same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc') == True
-    assert same_chars('abcd', 'dddddddabc') == True
-    assert same_chars('dddddddabc', 'abcd') == True
-    assert same_chars('eabcd', 'dddddddabc') == False
-    assert same_chars('abcd', 'dddddddabcf') == False
-    assert same_chars('eabcdzzzz', 'dddzzzzzzzddddabc') == False
-check(same_chars)
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    return fib(n - 1) + fib(n - 2)
+def check(fib):
+    assert fib(10) == 55
+    assert fib(1) == 1
+    assert fib(8) == 21
+check(fib)
