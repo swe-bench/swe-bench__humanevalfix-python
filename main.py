@@ -1,26 +1,42 @@
 
-def digits(n):
-    """Given a positive integer n, return the product of the odd digits.
-    Return 0 if all digits are even.
-    For example:
-    digits(1)  == 1
-    digits(4)  == 0
-    digits(235) == 15
-    """
-    product = 1
-    odd_count = 0
-    for digit in str(n):
-        int_digit = int(digit)
-        if int_digit%2 == 1:
-            product*= product*int_digit
-            odd_count+=1
-    if odd_count ==0:
-        return 0
-    else:
-        return product
-def check(digits):
+def is_nested(string):
+    '''
+    Create a function that takes a string as input which contains only square brackets.
+    The function should return True if and only if there is a valid subsequence of brackets 
+    where at least one bracket in the subsequence is nested.
+
+    is_nested('[[]]') ➞ True
+    is_nested('[]]]]]]][[[[[]') ➞ False
+    is_nested('[][]') ➞ False
+    is_nested('[]') ➞ False
+    is_nested('[[][]]') ➞ True
+    is_nested('[[]][[') ➞ True
+    '''
+    opening_bracket_index = []
+    closing_bracket_index = []
+    for i in range(len(string)):
+        if string[i] == '(':
+            opening_bracket_index.append(i)
+        else:
+            closing_bracket_index.append(i)
+    closing_bracket_index.reverse()
+    cnt = 0
+    i = 0
+    l = len(closing_bracket_index)
+    for idx in opening_bracket_index:
+        if i < l and idx < closing_bracket_index[i]:
+            cnt += 1
+            i += 1
+    return cnt >= 2
+
+    
+def check(is_nested):
     # Check some simple cases
-    assert digits(1) == 1
-    assert digits(4) == 0
-    assert digits(235) ==15
-check(digits)
+    assert is_nested('[[]]') == True, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_nested('[]]]]]]][[[[[]') == False
+    assert is_nested('[][]') == False
+    assert is_nested('[]') == False
+    assert is_nested('[[]][[') == True
+    assert is_nested('[[][]]') == True
+    # Check some edge cases that are easy to work out by hand.
+check(is_nested)
