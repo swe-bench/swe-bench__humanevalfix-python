@@ -1,36 +1,25 @@
 
-def will_it_fly(q,w):
-    '''
-    Write a function that returns True if the object q will fly, and False otherwise.
-    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+def smallest_change(arr):
+    """
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any other element.
 
-    Example:
-    will_it_fly([1, 2], 5) ➞ False 
-    # 1+2 is less than the maximum possible weight, but it's unbalanced.
-
-    will_it_fly([3, 2, 3], 1) ➞ False
-    # it's balanced, but 3+2+3 is more than the maximum possible weight.
-
-    will_it_fly([3, 2, 3], 9) ➞ True
-    # 3+2+3 is less than the maximum possible weight, and it's balanced.
-
-    will_it_fly([3], 5) ➞ True
-    # 3 is less than the maximum possible weight, and it's balanced.
-    '''
-    if sum(q) > w:
-        return False
-
-    i, j = 0, len(q)-1
-    while i<j:
-        if q[i] == q[j]:
-            return False
-        i+=1
-        j-=1
-    return True
-def check(will_it_fly):
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6]) == 4
+    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    smallest_change([1, 2, 3, 2, 1]) == 0
+    """
+    ans = 0
+    for i in range(len(arr) // 2):
+        if ans != arr[len(arr) - i - 1]:
+            ans += 1
+    return ans
+def check(smallest_change):
     # Check some simple cases
-    assert will_it_fly([3, 2, 3], 9) is True
-    assert will_it_fly([1, 2], 5) is False
-    assert will_it_fly([3], 5) is True
-    assert will_it_fly([3, 2, 3], 1) is False
-check(will_it_fly)
+    assert smallest_change([1,2,3,5,4,7,9,6]) == 4
+    assert smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    # Check some edge cases that are easy to work out by hand.
+    assert smallest_change([1, 2, 3, 2, 1]) == 0
+    assert smallest_change([3, 1, 1, 3]) == 0
+check(smallest_change)
