@@ -1,14 +1,14 @@
 
 
-def string_sequence(n: int) -> str:
-    """ Return a string containing space-delimited numbers starting from 0 upto n inclusive.
-    >>> string_sequence(0)
-    '0'
-    >>> string_sequence(5)
-    '0 1 2 3 4 5'
+def count_distinct_characters(string: str) -> int:
+    """ Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> count_distinct_characters('xyzXYZ')
+    3
+    >>> count_distinct_characters('Jerry')
+    4
     """
-    return ' '.join([str(x) for x in range(n)])
-def check(string_sequence):
-    assert string_sequence(0) == '0'
-    assert string_sequence(5) == '0 1 2 3 4 5'
-check(string_sequence)
+    return len(set(string))
+def check(count_distinct_characters):
+    assert count_distinct_characters('xyzXYZ') == 3
+    assert count_distinct_characters('Jerry') == 4
+check(count_distinct_characters)
