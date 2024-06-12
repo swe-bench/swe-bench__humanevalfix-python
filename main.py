@@ -1,21 +1,28 @@
 
-def circular_shift(x, shift):
-    """Circular shift the digits of the integer x, shift the digits right by shift
-    and return the result as a string.
-    If shift > number of digits, return digits reversed.
-    >>> circular_shift(12, 1)
-    "21"
-    >>> circular_shift(12, 2)
-    "12"
+def digitSum(s):
+    """Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("") => 0
+        digitSum("abAB") => 131
+        digitSum("abcCd") => 67
+        digitSum("helloE") => 69
+        digitSum("woArBld") => 131
+        digitSum("aAaaaXa") => 153
     """
-    s = str(x)
-    if shift > len(s):
-        return s[::-1]
-    else:
-        return s[:len(s) - shift] + s[len(s) - shift:]
-def check(circular_shift):
+    if s == "": return 0
+    return sum(ord(char) if char.islower() else 0 for char in s)
+def check(digitSum):
     # Check some simple cases
-    assert circular_shift(12, 2) == "12"
-    assert circular_shift(12, 1) == "21", "This prints if this assert fails 1 (good for debugging!)"
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert digitSum("") == 0, "Error"
+    assert digitSum("abAB") == 131, "Error"
+    assert digitSum("abcCd") == 67, "Error"
+    assert digitSum("helloE") == 69, "Error"
+    assert digitSum("woArBld") == 131, "Error"
+    assert digitSum("aAaaaXa") == 153, "Error"
     # Check some edge cases that are easy to work out by hand.
-check(circular_shift)
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(digitSum)
