@@ -1,40 +1,32 @@
 
-def fix_spaces(text):
+def file_name_check(file_name):
+    """Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - There should not be more than three digits ('0'-'9') in the file's name.
+    - The file's name contains exactly one dot '.'
+    - The substring before the dot should not be empty, and it starts with a letter from 
+    the latin alphapet ('a'-'z' and 'A'-'Z').
+    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
+    Examples:
+    file_name_check("example.txt") # => 'Yes'
+    file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    Given a string text, replace all spaces in it with underscores, 
-    and if a string has more than 2 consecutive spaces, 
-    then replace all consecutive spaces with - 
-    
-    fix_spaces("Example") == "Example"
-    fix_spaces("Example 1") == "Example_1"
-    fix_spaces(" Example 2") == "_Example_2"
-    fix_spaces(" Example   3") == "_Example-3"
-    """
-    new_text = ""
-    i = 0
-    start, end = 0, 0
-    while i < len(text):
-        if text[i] == " ":
-            end += 1
-        else:
-            if end - start > 2:
-                new_text += "-"+text[i]
-            elif end - start > 0:
-                new_text += "_"*(end - start)+text[i]
-            else:
-                new_text += text[i]
-            start, end = i+1, i+1
-        i+=1
-    if end - start > 2:
-        new_text += "-"
-    elif end - start > 0:
-        new_text += "__"
-    return new_text
-def check(fix_spaces):
+    suf = ['txt', 'exe', 'dll']
+    lst = file_name.split(sep='.')
+    if len(lst) != 2:
+        return 'No'
+    if len(lst[0]) == 0:
+        return 'No'
+    if not lst[0][0].isalpha():
+        return 'No'
+    t = len([x for x in lst[0] if x.isdigit()])
+    if t > 3:
+        return 'No'
+    return 'Yes'
+def check(file_name_check):
     # Check some simple cases
-    assert fix_spaces("Example") == "Example", "This prints if this assert fails 1 (good for debugging!)"
-    assert fix_spaces("Example 1") == "Example_1"
-    assert fix_spaces(" Example 2") == "_Example_2"
-    # Check some edge cases that are easy to work out by hand.
-    assert fix_spaces(" Example   3") == "_Example-3"
-check(fix_spaces)
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("1example.dll") == 'No'
+check(file_name_check)
