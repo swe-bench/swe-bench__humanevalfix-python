@@ -1,18 +1,44 @@
 
-def find_max(words):
-    """Write a function that accepts a list of strings.
-    The list contains different words. Return the word with maximum number
-    of unique characters. If multiple strings have maximum number of unique
-    characters, return the one which comes first in lexicographical order.
-
-    find_max(["name", "of", "string"]) == "string"
-    find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
+def eat(number, need, remaining):
     """
-    return sorted(words)[0]
-def check(find_max):
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """
+    if(need <= remaining):
+        return [ number + need , number + remaining-need ]
+    else:
+        return [ number + need + remaining , 0]
+def check(eat):
     # Check some simple cases
-    assert (find_max(["name", "of", "string"]) == "string"), "t1"
-    assert (find_max(["name", "enam", "game"]) == "enam"), 't2'
-    assert (find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"), 't3'
-check(find_max)
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert eat(5, 6, 10) == [11, 4], "Error"
+    assert eat(4, 8, 9) == [12, 1], "Error"
+    assert eat(1, 10, 10) == [11, 0], "Error"
+    assert eat(2, 11, 5) == [7, 0], "Error"
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(eat)
