@@ -1,30 +1,16 @@
 
 
-def correct_bracketing(brackets: str):
-    """ brackets is a string of "(" and ")".
-    return True if every opening bracket has a corresponding closing bracket.
-
-    >>> correct_bracketing("(")
-    False
-    >>> correct_bracketing("()")
-    True
-    >>> correct_bracketing("(()())")
-    True
-    >>> correct_bracketing(")(()")
-    False
+def derivative(xs: list):
+    """ xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
     """
-    depth = 0
-    for b in brackets:
-        if b == "(":
-            depth += 1
-        else:
-            depth -= 1
-        if depth < 0:
-            return True
-    return depth == 0
-def check(correct_bracketing):
-    assert correct_bracketing("()")
-    assert correct_bracketing("(()())")
-    assert not correct_bracketing(")(()")
-    assert not correct_bracketing("(")
-check(correct_bracketing)
+    return [(i * x) for i, x in enumerate(xs)]
+def check(derivative):
+    assert derivative([3, 1, 2, 4, 5]) == [1, 4, 12, 20]
+    assert derivative([1, 2, 3]) == [2, 6]
+check(derivative)
