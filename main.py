@@ -1,15 +1,15 @@
 from typing import List
 
 
-def concatenate(strings: List[str]) -> str:
-    """ Concatenate list of strings into a single string
-    >>> concatenate([])
-    ''
-    >>> concatenate(['a', 'b', 'c'])
-    'abc'
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """ Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
     """
-    return ' '.join(strings)
-def check(concatenate):
-    assert concatenate([]) == ''
-    assert concatenate(['a', 'b', 'c']) == 'abc'
-check(concatenate)
+    return [x for x in strings if x.endswith(prefix)]
+def check(filter_by_prefix):
+    assert filter_by_prefix([], 'a') == []
+    assert filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a') == ['abc', 'array']
+check(filter_by_prefix)
