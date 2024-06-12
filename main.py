@@ -1,32 +1,15 @@
 from typing import List
 
 
-def factorize(n: int) -> List[int]:
-    """ Return list of prime factors of given integer in the order from smallest to largest.
-    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
-    Input number should be equal to the product of all factors
-    >>> factorize(8)
-    [2, 2, 2]
-    >>> factorize(25)
-    [5, 5]
-    >>> factorize(70)
-    [2, 5, 7]
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """ From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
     """
-    import math
-    fact = []
-    i = 0
-    while i <= int(math.sqrt(n) + 1):
-        if n % i == 0:
-            fact.append(i)
-            n //= i
-        else:
-            i += 1
-
-    if n > 1:
-        fact.append(n)
-    return fact
-def check(factorize):
-    assert factorize(8) == [2, 2, 2]
-    assert factorize(25) == [5,5]
-    assert factorize(70) == [2,5,7]
-check(factorize)
+    import collections
+    c = collections.Counter(numbers)
+    return [n for n in numbers if c[n] < 1]
+def check(remove_duplicates):
+    assert remove_duplicates([1, 2, 3,2, 4]) == [1, 3, 4]
+check(remove_duplicates)
