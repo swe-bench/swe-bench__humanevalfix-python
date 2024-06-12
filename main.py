@@ -1,23 +1,45 @@
 
-def count_upper(s):
-    """
-    Given a string s, count the number of uppercase vowels in even indices.
-    
-    For example:
-    count_upper('aBCdEf') returns 1
-    count_upper('abcdefg') returns 0
-    count_upper('dBBE') returns 0
-    """
-    count = 0
-    for i in range(0,len(s),2):
-        if s[i] in "AEIOU":
-            count += 2
-    return count
-def check(count_upper):
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+    from math import floor, ceil
+
+    if value.count('.') == 1:
+        # remove trailing zeros
+        while (value[-1] == '0'):
+            value = value[:-1]
+
+    num = float(value)
+    if value[-2:] == '.5':
+        if num > 0:
+            res = floor(num)
+        else:
+            res = ceil(num)
+    elif len(value) > 0:
+        res = int(round(num))
+    else:
+        res = 0
+
+    return res
+
+def check(closest_integer):
     # Check some simple cases
-    assert count_upper('aBCdEf')  == 1
-    assert count_upper('abcdefg') == 0
-    assert count_upper('dBBE') == 0
+    assert closest_integer("10") == 10, "Test 1"
+    assert closest_integer("15.3") == 15, "Test 3"
     # Check some edge cases that are easy to work out by hand.
-    assert True
-check(count_upper)
+check(closest_integer)
