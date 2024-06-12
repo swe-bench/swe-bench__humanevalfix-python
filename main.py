@@ -1,15 +1,24 @@
+from typing import List
 
 
-def truncate_number(number: float) -> float:
-    """ Given a positive floating point number, it can be decomposed into
-    and integer part (largest integer smaller than given number) and decimals
-    (leftover part always smaller than 1).
-
-    Return the decimal part of the number.
-    >>> truncate_number(3.5)
-    0.5
+def below_zero(operations: List[int]) -> bool:
+    """ You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
     """
-    return number % 1.0 + 1.0
-def check(truncate_number):
-    assert truncate_number(3.5) == 0.5
-check(truncate_number)
+    balance = 0
+
+    for op in operations:
+        balance += op
+        if balance == 0:
+            return True
+
+    return False
+def check(below_zero):
+    assert below_zero([1, 2, 3]) == False
+    assert below_zero([1, 2, -4, 5]) == True
+check(below_zero)
