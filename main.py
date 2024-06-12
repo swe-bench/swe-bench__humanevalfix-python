@@ -1,28 +1,26 @@
 
-def search(lst):
+def strange_sort_list(lst):
     '''
-    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
-    zero, and has a frequency greater than or equal to the value of the integer itself. 
-    The frequency of an integer is the number of times it appears in the list.
-    If no such a value exist, return -1.
-    Examples:
-        search([4, 1, 2, 2, 3, 1]) == 2
-        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
-        search([5, 5, 4, 4, 4]) == -1
-    '''
-    frq = [0] * (max(lst) + 1)
-    for i in lst:
-        frq[i] += 1;
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
 
-    ans = 0
-    for i in range(1, len(frq)):
-        if frq[i] >= i:
-            ans = i
-    
-    return ans
-def check(search):
-    # manually generated tests
-    assert search([4, 1, 2, 2, 3, 1]) == 2
-    assert search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
-    assert search([5, 5, 4, 4, 4]) == -1
-check(search)
+    Examples:
+    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    strange_sort_list([]) == []
+    '''
+    res, switch = [], False
+    while lst:
+        res.append(min(lst) if switch else max(lst))
+        lst.remove(res[-1])
+        switch = not switch
+    return res
+def check(strange_sort_list):
+    # Check some simple cases
+    assert strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    assert strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    assert strange_sort_list([]) == []
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+check(strange_sort_list)
