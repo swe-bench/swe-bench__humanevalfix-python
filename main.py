@@ -1,43 +1,23 @@
 
-def intersection(interval1, interval2):
-    """You are given two intervals,
-    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
-    The given intervals are closed which means that the interval (start, end)
-    includes both start and end.
-    For each given interval, it is assumed that its start is less or equal its end.
-    Your task is to determine whether the length of intersection of these two 
-    intervals is a prime number.
-    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
-    which its length is 1, which not a prime number.
-    If the length of the intersection is a prime number, return "YES",
-    otherwise, return "NO".
-    If the two intervals don't intersect, return "NO".
-
-
-    [input/output] samples:
-    intersection((1, 2), (2, 3)) ==> "NO"
-    intersection((-1, 1), (0, 4)) ==> "NO"
-    intersection((-3, -1), (-5, 5)) ==> "YES"
+def prod_signs(arr):
     """
-    def is_prime(num):
-        if num == 1 or num == 0:
-            return False
-        if num == 2:
-            return True
-        for i in range(2, num):
-            if num%i == 0:
-                return False
-        return True
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
 
-    l = max(interval1[0], interval2[0])
-    r = min(interval1[1], interval2[1])
-    length = r - l
-    if length > 0:
-        return "YES"
-    return "NO"
-def check(intersection):
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """
+    if not arr: return None
+    prod = 0 if 0 in arr else (-1) ** 2 * len(list(filter(lambda x: x < 0, arr)))
+    return prod * sum([abs(i) for i in arr])
+def check(prod_signs):
     # Check some simple cases
-    assert intersection((1, 2), (2, 3)) == "NO"
-    assert intersection((-1, 1), (0, 4)) == "NO"
-    assert intersection((-3, -1), (-5, 5)) == "YES"
-check(intersection)
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert prod_signs([1, 2, 2, -4]) == -9
+    assert prod_signs([0, 1]) == 0
+    assert prod_signs([]) == None
+check(prod_signs)
