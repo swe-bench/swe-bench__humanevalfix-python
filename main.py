@@ -1,39 +1,31 @@
 
 
-def prime_fib(n: int):
+def triples_sum_to_zero(l: list):
     """
-    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
-    >>> prime_fib(1)
-    2
-    >>> prime_fib(2)
-    3
-    >>> prime_fib(3)
-    5
-    >>> prime_fib(4)
-    13
-    >>> prime_fib(5)
-    89
-    """
-    import math
+    triples_sum_to_zero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
 
-    def is_prime(p):
-        if p < 2:
-            return False
-        for k in range(2, min(int(math.sqrt(p)), p)):
-            if p % k == 0:
-                return False
-        return True
-    f = [0, 1]
-    while True:
-        f.append(f[-1] + f[-2])
-        if is_prime(f[-1]):
-            n -= 1
-        if n == 0:
-            return f[-1]
-def check(prime_fib):
-    assert prime_fib(1) == 2
-    assert prime_fib(2) == 3
-    assert prime_fib(3) == 5
-    assert prime_fib(4) == 13
-    assert prime_fib(5) == 89
-check(prime_fib)
+    >>> triples_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> triples_sum_to_zero([1, 3, -2, 1])
+    True
+    >>> triples_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
+    True
+    >>> triples_sum_to_zero([1])
+    False
+    """
+    for i in range(1, len(l)):
+        for j in range(i + 1, len(l)):
+            for k in range(j + 1, len(l)):
+                if l[i] + l[j] + l[k] == 0:
+                    return True
+    return False
+def check(triples_sum_to_zero):
+    assert triples_sum_to_zero([1, 3, 5, 0]) == False
+    assert triples_sum_to_zero([1, 3, -2, 1]) == True
+    assert triples_sum_to_zero([1, 2, 3, 7]) == False
+    assert triples_sum_to_zero([2, 4, -5, 3, 9, 7]) == True
+check(triples_sum_to_zero)
