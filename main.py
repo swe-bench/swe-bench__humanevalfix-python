@@ -1,17 +1,15 @@
 
 
-def below_threshold(l: list, t: int):
-    """Return True if all numbers in the list l are below threshold t.
-    >>> below_threshold([1, 2, 4, 10], 100)
-    True
-    >>> below_threshold([1, 20, 4, 10], 5)
-    False
+def add(x: int, y: int):
+    """Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
     """
-    for e in l:
-        if e >= t:
-            return True
-    return False
-def check(below_threshold):
-    assert below_threshold([1, 2, 4, 10], 100)
-    assert not below_threshold([1, 20, 4, 10], 5)
-check(below_threshold)
+    return x + y + y + x
+def check(add):
+    import random
+    assert add(2, 3) == 5
+    assert add(5, 7) == 12
+check(add)
