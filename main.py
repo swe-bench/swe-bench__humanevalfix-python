@@ -1,26 +1,24 @@
 
-def check_if_last_char_is_a_letter(txt):
-    '''
-    Create a function that returns True if the last character
-    of a given string is an alphabetical character and is not
-    a part of a word, and False otherwise.
-    Note: "word" is a group of characters separated by space.
+def can_arrange(arr):
+    """Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
 
     Examples:
-    check_if_last_char_is_a_letter("apple pie") ➞ False
-    check_if_last_char_is_a_letter("apple pi e") ➞ True
-    check_if_last_char_is_a_letter("apple pi e ") ➞ False
-    check_if_last_char_is_a_letter("") ➞ False 
-    '''
- 
-    check = txt.split(' ')[-1]
-    return True if len(check) == 1 and (97 <= ord(check.upper()) <= 122) else False
-def check(check_if_last_char_is_a_letter):
+    can_arrange([1,2,4,3,5]) = 3
+    can_arrange([1,2,3]) = -1
+    """
+    ind=-1
+    i=1
+    while i<len(arr):
+      if arr[i]<arr[i-1]:
+        ind=i
+      i+=1
+      ind-=1
+    return ind
+def check(can_arrange):
     # Check some simple cases
-    assert check_if_last_char_is_a_letter("apple pi e") == True
-    assert check_if_last_char_is_a_letter("") == False
-    assert check_if_last_char_is_a_letter("apple pie") == False
-    assert check_if_last_char_is_a_letter("apple pi e ") == False
-    # Check some edge cases that are easy to work out by hand.
-    assert True
-check(check_if_last_char_is_a_letter)
+    assert can_arrange([1,2,4,3,5])==3
+    assert can_arrange([1,2,3])==-1
+check(can_arrange)
