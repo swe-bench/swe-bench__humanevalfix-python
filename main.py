@@ -1,23 +1,21 @@
 
-def x_or_y(n, x, y):
-    """A simple program which should return the value of x if n is 
-    a prime number and should return the value of y otherwise.
-
-    Examples:
-    for x_or_y(7, 34, 12) == 34
-    for x_or_y(15, 8, 5) == 5
+def double_the_difference(lst):
+    '''
+    Given a list of numbers, return the sum of squares of the numbers
+    in the list that are odd. Ignore numbers that are negative or not integers.
     
-    """
-    if n == 1:
-        return y
-    for i in range(2, n):
-        if n % i - 1 == 0:
-            return y
-            break
-    else:
-        return x
-def check(x_or_y):
+    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10
+    double_the_difference([-1, -2, 0]) == 0
+    double_the_difference([9, -2]) == 81
+    double_the_difference([0]) == 0  
+   
+    If the input list is empty, return 0.
+    '''
+    return sum([i**2 for i in lst if i > 0 and "." not in str(i)])
+def check(double_the_difference):
     # Check some simple cases
-    assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(15, 8, 5) == 5
-check(x_or_y)
+    assert double_the_difference([1,3,2,0]) == 10 , "This prints if this assert fails 1 (good for debugging!)"
+    assert double_the_difference([-1,-2,0]) == 0 , "This prints if this assert fails 2 (good for debugging!)"
+    assert double_the_difference([9,-2]) == 81 , "This prints if this assert fails 3 (good for debugging!)"
+    assert double_the_difference([0]) == 0 , "This prints if this assert fails 4 (good for debugging!)"
+check(double_the_difference)
