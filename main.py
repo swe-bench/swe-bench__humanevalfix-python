@@ -1,25 +1,16 @@
-from typing import List, Optional
 
 
-def longest(strings: List[str]) -> Optional[str]:
-    """ Out of list of strings, return the longest one. Return the first one in case of multiple
-    strings of the same length. Return None in case the input list is empty.
-    >>> longest([])
-
-    >>> longest(['a', 'b', 'c'])
-    'a'
-    >>> longest(['a', 'bb', 'ccc'])
-    'ccc'
+def greatest_common_divisor(a: int, b: int) -> int:
+    """ Return a greatest common divisor of two integers a and b
+    >>> greatest_common_divisor(3, 5)
+    1
+    >>> greatest_common_divisor(25, 15)
+    5
     """
-    if not strings:
-        return None
-
-    maxlen = max(len(x) for x in strings)
-    for s in strings:
-        if len(s) > maxlen:
-            return s
-def check(longest):
-    assert longest([]) == None
-    assert longest(['a', 'b', 'c']) == 'a'
-    assert longest(['a', 'bb', 'ccc']) == 'ccc'
-check(longest)
+    while b:
+        a, b = b, a % b
+    return b
+def check(greatest_common_divisor):
+    assert greatest_common_divisor(3, 5) == 1
+    assert greatest_common_divisor(25, 15) == 5
+check(greatest_common_divisor)
