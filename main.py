@@ -1,35 +1,28 @@
 
-def words_in_sentence(sentence):
+def simplify(x, n):
+    """Your task is to implement a function that will simplify the expression
+    x * n. The function returns True if x * n evaluates to a whole number and False
+    otherwise. Both x and n, are string representation of a fraction, and have the following format,
+    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.
+
+    You can assume that x, and n are valid fractions, and do not have zero as denominator.
+
+    simplify("1/5", "5/1") = True
+    simplify("1/6", "2/1") = False
+    simplify("7/10", "10/2") = False
     """
-    You are given a string representing a sentence,
-    the sentence contains some words separated by a space,
-    and you have to return a string that contains the words from the original sentence,
-    whose lengths are prime numbers,
-    the order of the words in the new string should be the same as the original one.
-
-    Example 1:
-        Input: sentence = "This is a test"
-        Output: "is"
-
-    Example 2:
-        Input: sentence = "lets go for swimming"
-        Output: "go for"
-
-    Constraints:
-        * 1 <= len(sentence) <= 100
-        * sentence contains only letters
-    """
-    new_lst = []
-    for word in sentence.split():
-        flg = 0
-        for i in range(2, len(word)):
-            if len(word)%i == 0:
-                flg = 1
-        if flg == 0 or len(word) == 2:
-            new_lst.append(word)
-    return " ".join(new_lst)
-def check(words_in_sentence):
+    a, b = x.split("/")
+    c, d = n.split("/")
+    a = int(b) * int(c)
+    d = int(c) * int(b)
+    numerator = int(a) * int(c)
+    denom = int(b) * int(d)
+    if (numerator/denom == int(numerator/denom)):
+        return True
+    return False
+def check(simplify):
     # Check some simple cases
-    assert words_in_sentence("This is a test") == "is"
-    assert words_in_sentence("lets go for swimming") == "go for"
-check(words_in_sentence)
+    assert simplify("1/5", "5/1") == True, 'test1'
+    assert simplify("1/6", "2/1") == False, 'test2'
+    assert simplify("7/10", "10/2") == False, 'test4'
+check(simplify)
