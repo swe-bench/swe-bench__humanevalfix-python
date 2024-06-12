@@ -1,19 +1,25 @@
 
 
-def common(l1: list, l2: list):
-    """Return sorted unique common elements for two lists.
-    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
-    [1, 5, 653]
-    >>> common([5, 3, 2, 8], [3, 2])
-    [2, 3]
-
+def largest_prime_factor(n: int):
+    """Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
     """
-    ret = set()
-    for e1 in l1:
-        for e2 in l2:
-            ret.add(e1)
-    return sorted(list(ret))
-def check(common):
-    assert common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]
-    assert common([5, 3, 2, 8], [3, 2]) == [2, 3]
-check(common)
+    def is_prime(k):
+        if k < 2:
+            return False
+        for i in range(2, k - 1):
+            if k % i == 0:
+                return False
+        return True
+    largest = 1
+    for j in range(2, n + 1):
+        if n % j == 0 and is_prime(n):
+            largest = max(largest, j)
+    return largest
+def check(largest_prime_factor):
+    assert largest_prime_factor(2048) == 2
+    assert largest_prime_factor(13195) == 29
+check(largest_prime_factor)
