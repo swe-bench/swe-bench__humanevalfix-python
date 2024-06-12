@@ -1,36 +1,45 @@
 
-def get_odd_collatz(n):
+def valid_date(date):
+    """You have to write a function which validates a given date string and
+    returns True if the date is valid otherwise False.
+    The date is valid if all of the following rules are satisfied:
+    1. The date string is not empty.
+    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.
+    3. The months should not be less than 1 or higher than 12.
+    4. The date should be in the format: mm-dd-yyyy
+
+    for example: 
+    valid_date('03-11-2000') => True
+
+    valid_date('15-01-2012') => False
+
+    valid_date('04-0-2040') => False
+
+    valid_date('06-04-2020') => True
+
+    valid_date('06/04/2020') => False
     """
-    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
+    try:
+        date = date.strip()
+        day, month, year = date.split('-')
+        day, month, year = int(day), int(month), int(year)
+        if month < 1 or month > 12:
+            return False
+        if month in [1,3,5,7,8,10,12] and day < 1 or day > 31:
+            return False
+        if month in [4,6,9,11] and day < 1 or day > 30:
+            return False
+        if month == 2 and day < 1 or day > 29:
+            return False
+    except:
+        return False
 
-    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined
-    as follows: start with any positive integer n. Then each term is obtained from the 
-    previous term as follows: if the previous term is even, the next term is one half of 
-    the previous term. If the previous term is odd, the next term is 3 times the previous
-    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.
-
-    Note: 
-        1. Collatz(1) is [1].
-        2. returned list sorted in increasing order.
-
-    For example:
-    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.
-    """
-    if n%2==0:
-        odd_collatz = [] 
-    else:
-        odd_collatz = [n]
-    while n > 1:
-        if n % 2 == 0:
-            n = n/2
-        else:
-            n = n*2 + 1
-            
-        if n%2 == 1:
-            odd_collatz.append(int(n))
-
-    return sorted(odd_collatz)
-def check(get_odd_collatz):
+    return True
+def check(valid_date):
     # Check some simple cases
-    assert get_odd_collatz(5) == [1, 5]
-check(get_odd_collatz)
+    assert valid_date('03-11-2000') == True
+    assert valid_date('15-01-2012') == False
+    assert valid_date('04-0-2040') == False
+    assert valid_date('06-04-2020') == True
+    assert valid_date('06/04/2020') == False
+check(valid_date)
