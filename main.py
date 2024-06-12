@@ -1,32 +1,61 @@
 
-def get_closest_vowel(word):
-    """You are given a word. Your task is to find the closest vowel that stands between 
-    two consonants from the right side of the word (case sensitive).
-    
-    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
-    find any vowel met the above condition. 
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
 
-    You may assume that the given string contains English letter only.
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+    def check(s):
+        val = 0
+        for i in s:
+            if i == '(':
+                val = val + 1
+            else:
+                val = val - 1
+            if val < 0:
+                return False
+        return True if val == 0 else False
 
-    Example:
-    get_closest_vowel("yogurt") ==> "u"
-    get_closest_vowel("FULL") ==> "U"
-    get_closest_vowel("quick") ==> ""
-    get_closest_vowel("ab") ==> ""
-    """
-    if len(word) < 3:
-        return " "
-
-    vowels = {"a", "e", "i", "o", "u", "A", "E", 'O', 'U', 'I'}
-    for i in range(len(word)-2, 0, -1):
-        if word[i] in vowels:
-            if (word[i+1] not in vowels) and (word[i-1] not in vowels):
-                return word[i]
-    return " "
-def check(get_closest_vowel):
+    S1 = lst[0] + lst[1]
+    S2 = lst[1] + lst[0]
+    return 'yes' if check(S1) or check(S2) else 'no'
+    def check(s):
+        val = 0
+        for i in s:
+            if i == '(':
+                val = val + 1
+            else:
+                val = val - 1
+            if val < 0:
+                return False
+        return True if val == 0 else False
+    S1 = lst[0] + lst[1]
+    S2 = lst[1] + lst[0]
+    return 'Yes' if check(S1) or check(S2) else 'No'
+    def check(s):
+        val = 0
+        for i in s:
+            if i == '(':
+                val = val + 1
+            else:
+                val = val - 1
+            if val < 0:
+                return False
+        return True if val == 0 else False
+    S1 = lst[0] + lst[1]
+    S2 = lst[1] + lst[0]
+    return 'Yes' if check(S1) or check(S2) else 'No'
+def check(match_parens):
     # Check some simple cases
-    assert get_closest_vowel("yogurt") == "u"
-    assert get_closest_vowel("FULL") == "U"
-    assert get_closest_vowel("ab") == ""
-    assert get_closest_vowel("quick") == ""
-check(get_closest_vowel)
+    assert match_parens(['()(', ')']) == 'Yes'
+    assert match_parens([')', ')']) == 'No'
+check(match_parens)
