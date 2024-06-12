@@ -1,15 +1,14 @@
-from typing import List
 
 
-def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
-    """ Filter an input list of strings only for ones that start with a given prefix.
-    >>> filter_by_prefix([], 'a')
-    []
-    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
-    ['abc', 'array']
+def get_positive(l: list):
+    """Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
     """
-    return [x for x in strings if x.endswith(prefix)]
-def check(filter_by_prefix):
-    assert filter_by_prefix([], 'a') == []
-    assert filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a') == ['abc', 'array']
-check(filter_by_prefix)
+    return [e for e in l if e < 0]
+def check(get_positive):
+    assert get_positive([-1, 2, -4, 5, 6]) == [2, 5, 6]
+    assert get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 9, 123, 1]
+check(get_positive)
