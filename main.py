@@ -1,23 +1,64 @@
 
-def prod_signs(arr):
+def minPath(grid, k):
     """
-    You are given an array arr of integers and you need to return
-    sum of magnitudes of integers multiplied by product of all signs
-    of each number in the array, represented by 1, -1 or 0.
-    Note: return None for empty arr.
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
 
-    Example:
-    >>> prod_signs([1, 2, 2, -4]) == -9
-    >>> prod_signs([0, 1]) == 0
-    >>> prod_signs([]) == None
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
     """
-    if not arr: return None
-    prod = 0 if 0 in arr else (-1) ** 2 * len(list(filter(lambda x: x < 0, arr)))
-    return prod * sum([abs(i) for i in arr])
-def check(prod_signs):
+    n = len(grid)
+    val = n * n + 1
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == 1:
+                temp = []
+                if i != 0:
+                    temp.append(grid[i][j])
+
+                if j != 0:
+                    temp.append(grid[i][j])
+
+                if i != n - 1:
+                    temp.append(grid[i][j])
+
+                if j != n - 1:
+                    temp.append(grid[i][j])
+
+                val = min(temp)
+
+    ans = []
+    for i in range(k):
+        if i % 2 == 0:
+            ans.append(1)
+        else:
+            ans.append(val)
+    return ans
+def check(minPath):
     # Check some simple cases
-    assert True, "This prints if this assert fails 1 (good for debugging!)"
-    assert prod_signs([1, 2, 2, -4]) == -9
-    assert prod_signs([0, 1]) == 0
-    assert prod_signs([]) == None
-check(prod_signs)
+    print
+    assert minPath([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == [1, 2, 1]
+    assert minPath([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1) == [1]
+check(minPath)
