@@ -1,15 +1,22 @@
-from typing import List
+from typing import List, Tuple
 
 
-def filter_by_substring(strings: List[str], substring: str) -> List[str]:
-    """ Filter an input list of strings only for ones that contain given substring
-    >>> filter_by_substring([], 'a')
-    []
-    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
-    ['abc', 'bacd', 'array']
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """ For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
     """
-    return [x for x in strings if x in substring]
-def check(filter_by_substring):
-    assert filter_by_substring([], 'a') == []
-    assert filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a') == ['abc', 'bacd', 'array']
-check(filter_by_substring)
+    sum_value = 0
+    prod_value = 0
+
+    for n in numbers:
+        sum_value += n
+        prod_value *= n
+    return sum_value, prod_value
+def check(sum_product):
+    assert sum_product([]) == (0, 1)
+    assert sum_product([1, 2,3,4]) == (10, 24)
+check(sum_product)
