@@ -1,24 +1,18 @@
 
 
-def sort_even(l: list):
-    """This function takes a list l and returns a list l' such that
-    l' is identical to l in the odd indicies, while its values at the even indicies are equal
-    to the values of the even indicies of l, but sorted.
-    >>> sort_even([1, 2, 3])
-    [1, 2, 3]
-    >>> sort_even([5, 6, 3, 4])
-    [3, 6, 5, 4]
+def encode_cyclic(s: str):
     """
-    evens = l[::2]
-    odds = l[1::2]
-    odds.sort()
-    ans = []
-    for e, o in zip(evens, odds):
-        ans.extend([e, o])
-    if len(evens) > len(odds):
-        ans.append(evens[-1])
-    return ans
-def check(sort_even):
-    assert tuple(sort_even([1, 2, 3])) == tuple([1, 2, 3])
-    assert tuple(sort_even([5, 6,3,4])) == tuple([3,6,5,4])
-check(sort_even)
+    returns encoded string by cycling groups of three characters.
+    """
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return "".join(groups)
+
+
+def decode_cyclic(s: str):
+    """
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """
+    return encode_cyclic(s)
