@@ -1,25 +1,23 @@
 
 
-def largest_prime_factor(n: int):
-    """Return the largest prime factor of n. Assume n > 1 and is not a prime.
-    >>> largest_prime_factor(13195)
-    29
-    >>> largest_prime_factor(2048)
-    2
+def sum_to_n(n: int):
+    """sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
     """
-    def is_prime(k):
-        if k < 2:
-            return False
-        for i in range(2, k - 1):
-            if k % i == 0:
-                return False
-        return True
-    largest = 1
-    for j in range(2, n + 1):
-        if n % j == 0 and is_prime(n):
-            largest = max(largest, j)
-    return largest
-def check(largest_prime_factor):
-    assert largest_prime_factor(2048) == 2
-    assert largest_prime_factor(13195) == 29
-check(largest_prime_factor)
+    return sum(range(n))
+def check(sum_to_n):
+    assert sum_to_n(1) == 1
+    assert sum_to_n(5) == 15
+    assert sum_to_n(10) == 55
+    assert sum_to_n(30) == 465
+    assert sum_to_n(100) == 5050
+check(sum_to_n)
