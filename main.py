@@ -1,27 +1,17 @@
 
 
-def remove_vowels(text):
+def below_threshold(l: list, t: int):
+    """Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
     """
-    remove_vowels is a function that takes string and returns string without vowels.
-    >>> remove_vowels('')
-    ''
-    >>> remove_vowels("abcdef\nghijklm")
-    'bcdf\nghjklm'
-    >>> remove_vowels('abcdef')
-    'bcdf'
-    >>> remove_vowels('aaaaa')
-    ''
-    >>> remove_vowels('aaBAA')
-    'B'
-    >>> remove_vowels('zbcd')
-    'zbcd'
-    """
-    return "".join([s for s in text if s.lower() not in ["a", "e", "i", "o", "u", "w", "y"]])
-def check(remove_vowels):
-    assert remove_vowels('') == ''
-    assert remove_vowels("abcdef\nghijklm") == 'bcdf\nghjklm'
-    assert remove_vowels('abcdef') == 'bcdf'
-    assert remove_vowels('aaaaa') == ''
-    assert remove_vowels('aaBAA') == 'B'
-    assert remove_vowels('zbcd') == 'zbcd'
-check(remove_vowels)
+    for e in l:
+        if e >= t:
+            return True
+    return False
+def check(below_threshold):
+    assert below_threshold([1, 2, 4, 10], 100)
+    assert not below_threshold([1, 20, 4, 10], 5)
+check(below_threshold)
