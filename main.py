@@ -1,33 +1,32 @@
 
-def select_words(s, n):
-    """Given a string s and a natural number n, you have been tasked to implement 
-    a function that returns a list of all words from string s that contain exactly 
-    n consonants, in order these words appear in the string s.
-    If the string s is empty then the function should return an empty list.
-    Note: you may assume the input string contains only letters and spaces.
-    Examples:
-    select_words("Mary had a little lamb", 4) ==> ["little"]
-    select_words("Mary had a little lamb", 3) ==> ["Mary", "lamb"]
-    select_words("simple white space", 2) ==> []
-    select_words("Hello world", 4) ==> ["world"]
-    select_words("Uncle sam", 3) ==> ["Uncle"]
-    """
-    result = []
-    for word in s.split():
-        n_consonants = 0
-        for i in range(0, len(word)):
-            if word[i].lower() in ["a","e","i","o","u"]:
-                n_consonants += 1 
-        if n_consonants == n:
-            result.append(word)
-    return result
+def get_closest_vowel(word):
+    """You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel met the above condition. 
 
-def check(select_words):
+    You may assume that the given string contains English letter only.
+
+    Example:
+    get_closest_vowel("yogurt") ==> "u"
+    get_closest_vowel("FULL") ==> "U"
+    get_closest_vowel("quick") ==> ""
+    get_closest_vowel("ab") ==> ""
+    """
+    if len(word) < 3:
+        return " "
+
+    vowels = {"a", "e", "i", "o", "u", "A", "E", 'O', 'U', 'I'}
+    for i in range(len(word)-2, 0, -1):
+        if word[i] in vowels:
+            if (word[i+1] not in vowels) and (word[i-1] not in vowels):
+                return word[i]
+    return " "
+def check(get_closest_vowel):
     # Check some simple cases
-    assert select_words("Mary had a little lamb", 4) == ["little"], "First test error: " + str(select_words("Mary had a little lamb", 4))      
-    assert select_words("Mary had a little lamb", 3) == ["Mary", "lamb"], "Second test error: " + str(select_words("Mary had a little lamb", 3))  
-    assert select_words("simple white space", 2) == [], "Third test error: " + str(select_words("simple white space", 2))      
-    assert select_words("Hello world", 4) == ["world"], "Fourth test error: " + str(select_words("Hello world", 4))  
-    assert select_words("Uncle sam", 3) == ["Uncle"], "Fifth test error: " + str(select_words("Uncle sam", 3))
-    # Check some edge cases that are easy to work out by hand.
-check(select_words)
+    assert get_closest_vowel("yogurt") == "u"
+    assert get_closest_vowel("FULL") == "U"
+    assert get_closest_vowel("ab") == ""
+    assert get_closest_vowel("quick") == ""
+check(get_closest_vowel)
