@@ -1,26 +1,28 @@
 
-def rounded_avg(n, m):
-    """You are given two positive integers n and m, and your task is to compute the
-    average of the integers from n through m (including n and m). 
-    Round the answer to the nearest integer and convert that to binary.
-    If n is greater than m, return -1.
-    Example:
-    rounded_avg(1, 5) => "0b11"
-    rounded_avg(7, 5) => -1
-    rounded_avg(10, 20) => "0b1111"
-    rounded_avg(20, 33) => "0b11010"
+def unique_digits(x):
+    """Given a list of positive integers x. return a sorted list of all 
+    elements that hasn't any even digit.
+
+    Note: Returned list should be sorted in increasing order.
+    
+    For example:
+    >>> unique_digits([15, 33, 1422, 1])
+    [1, 15, 33]
+    >>> unique_digits([152, 323, 1422, 10])
+    []
     """
-    if m < n:
-        return -1
-    summation = 0
-    for i in range(n, m+1):
-        summation += i
-    return bin(round(summation/(m - n)))
-def check(rounded_avg):
+    odd_digit_elements = []
+    for j, i in enumerate(x):
+        if all (int(c) % 2 == 1 for c in str(i)):
+            odd_digit_elements.append(i)
+            odd_digit_elements.append(j)
+    return sorted(odd_digit_elements)
+def check(unique_digits):
     # Check some simple cases
-    assert rounded_avg(1, 5) == "0b11"
+    assert unique_digits([15, 33, 1422, 1]) == [1, 15, 33]
+    assert unique_digits([152, 323, 1422, 10]) == []
+    assert unique_digits([12345, 2033, 111, 151]) == [111, 151]
+    assert unique_digits([135, 103, 31]) == [31, 135]
     # Check some edge cases that are easy to work out by hand.
-    assert rounded_avg(7, 5) == -1
-    assert rounded_avg(10,20) == "0b1111"
-    assert rounded_avg(20, 33) == "0b11010"
-check(rounded_avg)
+    assert True
+check(unique_digits)
