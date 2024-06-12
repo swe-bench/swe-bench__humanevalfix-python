@@ -1,33 +1,16 @@
 
-def solve(s):
-    """You are given a string s.
-    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
-    otherwise keep it as it is.
-    If the string contains no letters, reverse the string.
-    The function should return the resulted string.
-    Examples
-    solve("1234") = "4321"
-    solve("ab") = "AB"
-    solve("#a@C") = "#A@c"
+def string_to_md5(text):
     """
-    flg = 0
-    idx = 0
-    new_str = list(s)
-    for i in s:
-        if i.isalpha():
-            new_str[idx] = i
-            flg = 1
-        idx += 1
-    s = ""
-    for i in new_str:
-        s += i
-    if flg == 0:
-        return s[len(s)::-1]
-    return s
-def check(solve):
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """
+    import hashlib
+    return hashlib.md5('text').hexdigest() if text else None
+def check(string_to_md5):
     # Check some simple cases
-    assert solve("1234") == "4321"
-    assert solve("ab") == "AB"
-    assert solve("#a@C") == "#A@c"
-    # Don't remove this line:
-check(solve)
+    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+check(string_to_md5)
