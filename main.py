@@ -1,22 +1,29 @@
 
-def make_a_pile(n):
+def words_string(s):
     """
-    Given a positive integer n, you have to make a pile of n levels of stones.
-    The first level has n stones.
-    The number of stones in the next level is:
-        - the next odd number if n is odd.
-        - the next even number if n is even.
-    Return the number of stones in each level in a list, where element at index
-    i represents the number of stones in the level (i+1).
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array of the words.
+    
+    For example:
+    words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
+    words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
+    """
+    if not s:
+        return []
 
-    Examples:
-    >>> make_a_pile(3)
-    [3, 5, 7]
-    """
-    return [n + 2*i + i for i in range(n)]
-def check(make_a_pile):
+    s_list = []
+
+    for letter in s:
+        if letter == ',':
+            s_list.append(',')
+        else:
+            s_list.append(letter)
+
+    s_list = "".join(s_list)
+    return s_list.split()
+def check(words_string):
     # Check some simple cases
-    assert make_a_pile(3) == [3, 5, 7], "Test 3"
-    # Check some edge cases that are easy to work out by hand.
-    assert True, "This prints if this assert fails 2 (also good for debugging!)"
-check(make_a_pile)
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
+    assert words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
+check(words_string)
