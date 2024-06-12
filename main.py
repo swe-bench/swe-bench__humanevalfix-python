@@ -1,18 +1,39 @@
 
 
-def encode_cyclic(s: str):
+def prime_fib(n: int):
     """
-    returns encoded string by cycling groups of three characters.
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
     """
-    # split string to groups. Each of length 3.
-    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
-    # cycle elements in each group. Unless group has fewer elements than 3.
-    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
-    return "".join(groups)
+    import math
 
-
-def decode_cyclic(s: str):
-    """
-    takes as input string encoded with encode_cyclic function. Returns decoded string.
-    """
-    return encode_cyclic(s)
+    def is_prime(p):
+        if p < 2:
+            return False
+        for k in range(2, min(int(math.sqrt(p)), p)):
+            if p % k == 0:
+                return False
+        return True
+    f = [0, 1]
+    while True:
+        f.append(f[-1] + f[-2])
+        if is_prime(f[-1]):
+            n -= 1
+        if n == 0:
+            return f[-1]
+def check(prime_fib):
+    assert prime_fib(1) == 2
+    assert prime_fib(2) == 3
+    assert prime_fib(3) == 5
+    assert prime_fib(4) == 13
+    assert prime_fib(5) == 89
+check(prime_fib)
