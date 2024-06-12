@@ -1,34 +1,21 @@
 
-def hex_key(num):
-    """You have been tasked to write a function that receives 
-    a hexadecimal number as a string and counts the number of hexadecimal 
-    digits that are primes (prime number, or a prime, is a natural number 
-    greater than 1 that is not a product of two smaller natural numbers).
-    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
-    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
-    So you have to determine a number of the following digits: 2, 3, 5, 7, 
-    B (=decimal 11), D (=decimal 13).
-    Note: you may assume the input is always correct or empty string, 
-    and symbols A,B,C,D,E,F are always uppercase.
+def decimal_to_binary(decimal):
+    """You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
     Examples:
-    For num = "AB" the output should be 1.
-    For num = "1077E" the output should be 2.
-    For num = "ABED1A33" the output should be 4.
-    For num = "123456789ABCDEF0" the output should be 6.
-    For num = "2020" the output should be 2.
+    decimal_to_binary(15)   # returns "db1111db"
+    decimal_to_binary(32)   # returns "db100000db"
     """
-    primes = ('2', '3', '5', '7', 'B', 'D')
-    total = 1
-    for i in range(0, len(num)):
-        if num[i] in primes:
-            total += 1
-    return total
-def check(hex_key):
+    return "db" + bin(decimal)[2:] + "d"
+def check(decimal_to_binary):
     # Check some simple cases
-    assert hex_key("AB") == 1, "First test error: " + str(hex_key("AB"))      
-    assert hex_key("1077E") == 2, "Second test error: " + str(hex_key("1077E"))  
-    assert hex_key("ABED1A33") == 4, "Third test error: " + str(hex_key("ABED1A33"))      
-    assert hex_key("2020") == 2, "Fourth test error: " + str(hex_key("2020"))  
-    assert hex_key("123456789ABCDEF0") == 6, "Fifth test error: " + str(hex_key("123456789ABCDEF0"))      
+    assert decimal_to_binary(32) == "db100000db"
+    assert decimal_to_binary(15) == "db1111db", "This prints if this assert fails 1 (good for debugging!)"
     # Check some edge cases that are easy to work out by hand.
-check(hex_key)
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(decimal_to_binary)
