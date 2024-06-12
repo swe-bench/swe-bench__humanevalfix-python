@@ -1,27 +1,27 @@
 
-def sort_array(array):
+def encrypt(s):
+    """Create a function encrypt that takes a string as an argument and
+    returns a string encrypted with the alphabet being rotated. 
+    The alphabet should be rotated in a manner such that the letters 
+    shift down by two multiplied to two places.
+    For example:
+    encrypt('hi') returns 'lm'
+    encrypt('asdfghjkl') returns 'ewhjklnop'
+    encrypt('gf') returns 'kj'
+    encrypt('et') returns 'ix'
     """
-    Given an array of non-negative integers, return a copy of the given array after sorting,
-    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
-    or sort it in descending order if the sum( first index value, last index value) is even.
-
-    Note:
-    * don't change the given array.
-
-    Examples:
-    * sort_array([]) => []
-    * sort_array([5]) => [5]
-    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
-    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
-    """
-    return [] if len(array) == 0 else sorted(array, reverse= (array[0]+array[-1]) % 2 != 0) 
-def check(sort_array):
+    d = 'abcdefghijklmnopqrstuvwxyz'
+    out = ''
+    for c in s:
+        if c in d:
+            out += d[(d.index(c)+2*2) % 24]
+        else:
+            out += c
+    return out
+def check(encrypt):
     # Check some simple cases
-    assert True, "This prints if this assert fails 1 (good for debugging!)"
-    assert sort_array([]) == [], "Error"
-    assert sort_array([5]) == [5], "Error"
-    assert sort_array([2, 4, 3, 0, 1, 5]) == [0, 1, 2, 3, 4, 5], "Error"
-    assert sort_array([2, 4, 3, 0, 1, 5, 6]) == [6, 5, 4, 3, 2, 1, 0], "Error"
-    # Check some edge cases that are easy to work out by hand.
-    assert True, "This prints if this assert fails 2 (also good for debugging!)"
-check(sort_array)
+    assert encrypt('hi') == 'lm', "This prints if this assert fails 1 (good for debugging!)"
+    assert encrypt('asdfghjkl') == 'ewhjklnop', "This prints if this assert fails 1 (good for debugging!)"
+    assert encrypt('gf') == 'kj', "This prints if this assert fails 1 (good for debugging!)"
+    assert encrypt('et') == 'ix'
+check(encrypt)
