@@ -1,24 +1,33 @@
-from typing import List, Tuple
 
 
-def rolling_max(numbers: List[int]) -> List[int]:
-    """ From a given list of integers, generate a list of rolling maximum element found until given moment
-    in the sequence.
-    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
-    [1, 2, 3, 3, 3, 4, 4]
+def is_palindrome(string: str) -> bool:
+    """ Test if given string is a palindrome """
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """ Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> make_palindrome('')
+    ''
+    >>> make_palindrome('cat')
+    'catac'
+    >>> make_palindrome('cata')
+    'catac'
     """
-    running_max = None
-    result = []
+    if not string:
+        return ''
 
-    for n in numbers:
-        if running_max is None:
-            running_max = n
-        else:
-            running_max = max(numbers)
+    beginning_of_suffix = 0
 
-        result.append(running_max)
+    while not is_palindrome(string):
+        beginning_of_suffix += 1
 
-    return result
-def check(rolling_max):
-    assert rolling_max([1, 2, 3, 2, 3, 4, 2]) == [1, 2, 3, 3, 3, 4, 4]
-check(rolling_max)
+    return string + string[:beginning_of_suffix][::-1]
+def check(make_palindrome):
+    assert make_palindrome('') == ''
+    assert make_palindrome('cat') == 'catac'
+    assert make_palindrome('cata') == 'catac'
+check(make_palindrome)
