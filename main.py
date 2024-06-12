@@ -1,19 +1,19 @@
 
 
-def monotonic(l: list):
-    """Return True is list elements are monotonically increasing or decreasing.
-    >>> monotonic([1, 2, 4, 20])
-    True
-    >>> monotonic([1, 20, 4, 10])
-    False
-    >>> monotonic([4, 1, 0, -10])
-    True
+def common(l1: list, l2: list):
+    """Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
     """
-    if l == sorted(l) or l == sorted(l, reverse=True):
-        return False
-    return True
-def check(monotonic):
-    assert monotonic([1, 2, 4, 10]) == True
-    assert monotonic([1, 20, 4, 10]) == False
-    assert monotonic([4, 1, 0, -10]) == True
-check(monotonic)
+    ret = set()
+    for e1 in l1:
+        for e2 in l2:
+            ret.add(e1)
+    return sorted(list(ret))
+def check(common):
+    assert common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]
+    assert common([5, 3, 2, 8], [3, 2]) == [2, 3]
+check(common)
