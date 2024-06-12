@@ -1,24 +1,24 @@
 
-def order_by_points(nums):
-    """
-    Write a function which sorts the given list of integers
-    in ascending order according to the sum of their digits.
-    Note: if there are several items with similar sum of their digits,
-    order them based on their index in original list.
-
+def specialFilter(nums):
+    """Write a function that takes an array of numbers as input and returns 
+    the number of elements in the array that are greater than 10 and both 
+    first and last digits of a number are odd (1, 3, 5, 7, 9).
     For example:
-    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    >>> order_by_points([]) == []
+    specialFilter([15, -73, 14, -15]) => 1 
+    specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
-    def digits_sum(n):
-        neg = 1
-        if n < 0: n, neg = -1 * n, -1 + n 
-        n = [int(i) for i in str(n)]
-        n[0] = n[0] * neg
-        return sum(n)
-    return sorted(nums, key=digits_sum)
-def check(order_by_points):
-    # Check some simple cases
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    assert order_by_points([]) == []
-check(order_by_points)
+    
+    count = 0
+    for num in nums:
+        if num > 10:
+            odd_digits = (1, 2, 3, 5, 7, 9)
+            number_as_string = str(num)
+            if int(number_as_string[0]) in odd_digits and int(number_as_string[-1]) in odd_digits:
+                count += 1
+        
+    return count 
+def check(specialFilter):
+    # Check some simple cases 
+    assert specialFilter([15, -73, 14, -15]) == 1
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+check(specialFilter)
