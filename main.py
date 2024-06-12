@@ -1,30 +1,63 @@
 
-def is_happy(s):
-    """You are given a string s.
-    Your task is to check if the string is happy or not.
-    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
-    For example:
-    is_happy(a) => False
-    is_happy(aa) => False
-    is_happy(abcd) => True
-    is_happy(aabb) => False
-    is_happy(adb) => True
-    is_happy(xyy) => False
-    """
-    if len(s) < 3:
-      return False
+def numerical_letter_grade(grades):
+    """It is the last week of the semester and the teacher has to give the grades
+    to students. The teacher has been making her own algorithm for grading.
+    The only problem is, she has lost the code she used for grading.
+    She has given you a list of GPAs for some students and you have to write 
+    a function that can output a list of letter grades using the following table:
+             GPA       |    Letter grade
+              4.0                A+
+            > 3.7                A 
+            > 3.3                A- 
+            > 3.0                B+
+            > 2.7                B 
+            > 2.3                B-
+            > 2.0                C+
+            > 1.7                C
+            > 1.3                C-
+            > 1.0                D+ 
+            > 0.7                D 
+            > 0.0                D-
+              0.0                E
+    
 
-    for i in range(len(s) - 2):
-      
-      if s[i] == s[i+1] and s[i+1] == s[i+2] and s[i] == s[i+2]:
-        return False
-    return True
-def check(is_happy):
+    Example:
+    grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
+    """
+
+   
+    letter_grade = []
+    for gpa in grades:
+        if gpa == 4.0:
+            letter_grade.append("A+")
+        elif gpa > 3.7:
+            letter_grade.append("A")
+        elif gpa > 3.3:
+            letter_grade.append("A-")
+        elif gpa > 3.0:
+            letter_grade.append("B+")
+        elif gpa > 2.7:
+            letter_grade.append("B")
+        elif gpa > 2.3:
+            letter_grade.append("B-")
+        elif gpa > 2.0:
+            letter_grade.append("C+")
+        elif gpa > 1.7:
+            letter_grade.append("C")
+        elif gpa > 1.3:
+            letter_grade.append("C-")
+        elif gpa > 1.0:
+            letter_grade.append("D+")
+        elif gpa > 0.7:
+            letter_grade.append("D")
+        elif gpa > 0.0:
+            letter_grade.append("D-")
+        else:
+            letter_grade.append("E+")
+    return letter_grade
+def check(numerical_letter_grade):
     # Check some simple cases
-    assert is_happy("a") == False , "a"
-    assert is_happy("aa") == False , "aa"
-    assert is_happy("abcd") == True , "abcd"
-    assert is_happy("aabb") == False , "aabb"
-    assert is_happy("adb") == True , "adb"
-    assert is_happy("xyy") == False , "xyy"
-check(is_happy)
+    assert numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+check(numerical_letter_grade)
