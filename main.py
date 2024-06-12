@@ -1,17 +1,24 @@
 from typing import List
 
 
-def mean_absolute_deviation(numbers: List[float]) -> float:
-    """ For a given list of input numbers, calculate Mean Absolute Deviation
-    around the mean of this dataset.
-    Mean Absolute Deviation is the average absolute difference between each
-    element and a centerpoint (mean in this case):
-    MAD = average | x - x_mean |
-    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
-    1.0
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """ Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
+    >>> intersperse([], 4)
+    []
+    >>> intersperse([1, 2, 3], 4)
+    [1, 4, 2, 4, 3]
     """
-    mean = sum(numbers) / len(numbers)
-    return sum(abs(x - mean) for x in numbers) / mean
-def check(mean_absolute_deviation):
-    assert abs(mean_absolute_deviation([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6
-check(mean_absolute_deviation)
+    if not numbers:
+        return []
+
+    result = []
+
+    for n in numbers[:-1]:
+        result.append(n)
+        result.append(delimeter)
+
+    return result
+def check(intersperse):
+    assert intersperse([], 4) == []
+    assert intersperse([1,2,3], 4) == [1,4,2,4,3]
+check(intersperse)
