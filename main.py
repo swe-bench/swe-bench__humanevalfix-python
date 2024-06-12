@@ -1,33 +1,30 @@
 
-def Strongest_Extension(class_name, extensions):
-    """You will be given the name of a class (a string) and a list of extensions.
-    The extensions are to be used to load additional classes to the class. The
-    strength of the extension is as follows: Let CAP be the number of the uppercase
-    letters in the extension's name, and let SM be the number of lowercase letters 
-    in the extension's name, the strength is given by the fraction CAP - SM. 
-    You should find the strongest extension and return a string in this 
-    format: ClassName.StrongestExtensionName.
-    If there are two or more extensions with the same strength, you should
-    choose the one that comes first in the list.
-    For example, if you are given "Slices" as the class and a list of the
-    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should
-    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
-    (its strength is -1).
-    Example:
-    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+def cycpattern_check(a , b):
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check("abcd","abd") => False
+    cycpattern_check("hello","ell") => True
+    cycpattern_check("whassup","psus") => False
+    cycpattern_check("abab","baa") => True
+    cycpattern_check("efef","eeff") => False
+    cycpattern_check("himenss","simen") => True
+
     """
-    strong = extensions[0]
-    my_val = len([x for x in extensions[0] if x.isalpha() and x.isupper()]) - len([x for x in extensions[0] if x.isalpha() and x.islower()])
-    for s in extensions:
-        val = len([x for x in s if x.isalpha() and x.isupper()]) - len([x for x in s if x.isalpha() and x.islower()])
-        if val > my_val:
-            strong = s
-            my_val = val
-
-    ans = class_name + strong
-    return ans
-
-def check(Strongest_Extension):
+    l = len(b)
+    pat = b + b
+    for i in range(len(a) - l + 1):
+        for j in range(len(b) - l + 1):
+            if a[i:i+l] == pat[j:j+l]:
+                return True
+    return False
+def check(cycpattern_check):
     # Check some simple cases
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
-check(Strongest_Extension)
+    #assert True, "This prints if this assert fails 1 (good for debugging!)"
+    # Check some edge cases that are easy to work out by hand.
+    #assert True, "This prints if this assert fails 2 (also good for debugging!)"
+    assert  cycpattern_check("abcd","abd") == False , "test #0"
+    assert  cycpattern_check("hello","ell") == True , "test #1"
+    assert  cycpattern_check("whassup","psus") == False , "test #2"
+    assert  cycpattern_check("abab","baa") == True , "test #3"
+    assert  cycpattern_check("efef","eeff") == False , "test #4"
+    assert  cycpattern_check("himenss","simen") == True , "test #5"
+check(cycpattern_check)
