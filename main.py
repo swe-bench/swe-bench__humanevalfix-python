@@ -1,21 +1,23 @@
-from typing import List
 
 
-def parse_music(music_string: str) -> List[int]:
-    """ Input to this function is a string representing musical notes in a special ASCII format.
-    Your task is to parse this string and return list of integers corresponding to how many beats does each
-    not last.
-
-    Here is a legend:
-    'o' - whole note, lasts four beats
-    'o|' - half note, lasts two beats
-    '.|' - quater note, lasts one beat
-
-    >>> parse_music('o o| .| o| o| .| .| .| .| o o')
-    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+def how_many_times(string: str, substring: str) -> int:
+    """ Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
     """
-    note_map = {'o': 3, 'o|': 2, '.|': 1}
-    return [note_map[x] for x in music_string.split(' ') if x]
-def check(parse_music):
-    assert parse_music('o o| .| o| o| .| .| .| .| o o') == [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
-check(parse_music)
+    times = 0
+
+    for i in range(len(string) - len(substring)):
+        if string[i:i+len(substring)] == substring:
+            times += 1
+
+    return times
+def check(how_many_times):
+    assert how_many_times('', 'a') == 0
+    assert how_many_times('aaa', 'a') == 3
+    assert how_many_times('aaaa', 'aa') == 3
+check(how_many_times)
