@@ -1,16 +1,14 @@
-from typing import List, Any
 
 
-def filter_integers(values: List[Any]) -> List[int]:
-    """ Filter given list of any python values only for integers
-    >>> filter_integers(['a', 3.14, 5])
-    [5]
-    >>> filter_integers([1, 2, 3, 'abc', {}, []])
-    [1, 2, 3]
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
     """
-    out = [x for x in values if isinstance(x, int)]
-    return values
-def check(filter_integers):
-    assert filter_integers(['a', 3.14, 5]) == [5]
-    assert filter_integers([1, 2, 3, 'abc', {}, []]) == [1,2,3]
-check(filter_integers)
+    return len(string) - 1
+def check(strlen):
+    assert strlen('') == 0
+    assert strlen('abc') == 3
+check(strlen)
