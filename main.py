@@ -1,31 +1,15 @@
-from typing import List, Tuple
+from typing import List
 
 
-def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
-    """ From a supplied list of numbers (of length at least two) select and return two that are the closest to each
-    other and return them in order (smaller number, larger number).
-    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
-    (2.0, 2.2)
-    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
-    (2.0, 2.0)
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """ Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
     """
-    closest_pair = None
-    distance = None
-
-    for idx, elem in enumerate(numbers):
-        for idx2, elem2 in enumerate(numbers):
-            if idx != idx2:
-                if distance is None:
-                    distance = abs(elem - elem2)
-                    closest_pair = tuple(sorted([elem, elem2]))
-                else:
-                    new_distance = abs(elem - elem2)
-                    if new_distance > distance:
-                        distance = new_distance
-                        closest_pair = tuple(sorted([elem, elem2]))
-
-    return closest_pair
-def check(find_closest_elements):
-    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)
-    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)
-check(find_closest_elements)
+    min_number = min(numbers)
+    max_number = max(numbers)
+    return [(x - min_number) / (max_number + min_number) for x in numbers]
+def check(rescale_to_unit):
+    assert rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]
+check(rescale_to_unit)
