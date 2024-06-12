@@ -1,19 +1,23 @@
 
-def multiply(a, b):
-    """Complete the function that takes two integers and returns 
-    the product of their unit digits.
-    Assume the input is always valid.
-    Examples:
-    multiply(148, 412) should return 16.
-    multiply(19, 28) should return 72.
-    multiply(2020, 1851) should return 0.
-    multiply(14,-15) should return 20.
+def count_upper(s):
     """
-    return abs(a % 10) * abs(b % 10) * a * b
-def check(multiply):
+    Given a string s, count the number of uppercase vowels in even indices.
+    
+    For example:
+    count_upper('aBCdEf') returns 1
+    count_upper('abcdefg') returns 0
+    count_upper('dBBE') returns 0
+    """
+    count = 0
+    for i in range(0,len(s),2):
+        if s[i] in "AEIOU":
+            count += 2
+    return count
+def check(count_upper):
     # Check some simple cases
-    assert multiply(148, 412) == 16, "First test error: " + str(multiply(148, 412))                    
-    assert multiply(19, 28) == 72, "Second test error: " + str(multiply(19, 28))           
-    assert multiply(2020, 1851) == 0, "Third test error: " + str(multiply(2020, 1851))
-    assert multiply(14,-15) == 20, "Fourth test error: " + str(multiply(14,-15))      
-check(multiply)
+    assert count_upper('aBCdEf')  == 1
+    assert count_upper('abcdefg') == 0
+    assert count_upper('dBBE') == 0
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+check(count_upper)
