@@ -1,31 +1,15 @@
-from typing import List
 
 
-def separate_paren_groups(paren_string: str) -> List[str]:
-    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
-    separate those group into separate strings and return the list of those.
-    Separate groups are balanced (each open brace is properly closed) and not nested within each other
-    Ignore any spaces in the input string.
-    >>> separate_paren_groups('( ) (( )) (( )( ))')
-    ['()', '(())', '(()())']
+def truncate_number(number: float) -> float:
+    """ Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
     """
-    result = []
-    current_string = []
-    current_depth = 0
-
-    for c in paren_string:
-        if c == '(':
-            current_depth += 1
-            current_string.append(c)
-        elif c == ')':
-            current_depth -= 1
-            current_string.append(c)
-
-            if current_depth < 0:
-                result.append(''.join(current_string))
-                current_string.clear()
-
-    return result
-def check(separate_paren_groups):
-    assert separate_paren_groups('( ) (( )) (( )( ))') == ['()', '(())', '(()())']
-check(separate_paren_groups)
+    return number % 1.0 + 1.0
+def check(truncate_number):
+    assert truncate_number(3.5) == 0.5
+check(truncate_number)
