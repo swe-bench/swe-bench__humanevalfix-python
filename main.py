@@ -1,32 +1,25 @@
 
-def any_int(x, y, z):
-    '''
-    Create a function that takes 3 numbers.
-    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.
-    Returns false in any other cases.
+def encode(message):
+    """
+    Write a function that takes a message, and encodes in such a 
+    way that it swaps case of all letters, replaces all vowels in 
+    the message with the letter that appears 2 places ahead of that 
+    vowel in the english alphabet. 
+    Assume only letters. 
     
-    Examples
-    any_int(5, 2, 7) ➞ True
-    
-    any_int(3, 2, 2) ➞ False
-
-    any_int(3, -2, 1) ➞ True
-    
-    any_int(3.6, -2.2, 2) ➞ False
-  
-
-    
-    '''
-    
-    if isinstance(x,int) and isinstance(y,int) and isinstance(z,int):
-        if (x+y==z) or (y+z==x):
-            return True
-        return False
-    return False
-def check(any_int):
+    Examples:
+    >>> encode('test')
+    'TGST'
+    >>> encode('This is a message')
+    'tHKS KS C MGSSCGG'
+    """
+    vowels = "aeiou"
+    vowels_replace = dict([(i, chr(ord(i) + 2)) for i in vowels])
+    message = message.swapcase()
+    return ''.join([vowels_replace[i] if i in vowels else i for i in message])
+def check(encode):
     # Check some simple cases
-    assert any_int(5, 2, 7)==True, "This prints if this assert fails 1 (good for debugging!)"
-    assert any_int(3, 2, 2)==False, "This prints if this assert fails 2 (good for debugging!)"
-    assert any_int(3, -2, 1)==True, "This prints if this assert fails 5 (good for debugging!)"
-    assert any_int(3.6, -2.2, 2)==False, "This prints if this assert fails 6 (good for debugging!)"
-check(any_int)
+    assert encode('test') == 'TGST', "This prints if this assert fails 1 (good for debugging!)"
+    # Check some edge cases that are easy to work out by hand.
+    assert encode('This is a message') == 'tHKS KS C MGSSCGG', "This prints if this assert fails 2 (also good for debugging!)"
+check(encode)
