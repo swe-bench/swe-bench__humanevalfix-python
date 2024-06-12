@@ -1,26 +1,29 @@
 
-def is_multiply_prime(a):
-    """Write a function that returns true if the given number is the multiplication of 3 prime numbers
-    and false otherwise.
-    Knowing that (a) is less then 100. 
-    Example:
-    is_multiply_prime(30) == True
-    30 = 2 * 3 * 5
+def is_simple_power(x, n):
+    """Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4) => true
+    is_simple_power(2, 2) => true
+    is_simple_power(8, 2) => true
+    is_simple_power(3, 2) => false
+    is_simple_power(3, 1) => false
+    is_simple_power(5, 3) => false
     """
-    def is_prime(n):
-        for j in range(0,n):
-            if n%j == 0:
-                return False
-        return True
-
-    for i in range(2,101):
-        if not is_prime(i): continue
-        for j in range(2,101):
-            if not is_prime(j): continue
-            for k in range(2,101):
-                if not is_prime(k): continue
-                if i*j*k == a: return True
-    return False
-def check(is_multiply_prime):
-    assert is_multiply_prime(30) == True
-check(is_multiply_prime)
+    if (n == 1): 
+        return (x == 1) 
+    power = 1
+    while (n < x): 
+        power = power * n 
+    return (power == x) 
+def check(is_simple_power):
+    # Check some simple cases
+    assert is_simple_power(1, 4)== True, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_simple_power(2, 2)==True, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_simple_power(8, 2)==True, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_simple_power(3, 2)==False, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_simple_power(3, 1)==False, "This prints if this assert fails 1 (good for debugging!)"
+    assert is_simple_power(5, 3)==False, "This prints if this assert fails 1 (good for debugging!)"
+    # Check some edge cases that are easy to work out by hand.
+check(is_simple_power)
