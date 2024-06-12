@@ -1,61 +1,37 @@
 
-def match_parens(lst):
-    '''
-    You are given a list of two strings, both strings consist of open
-    parentheses '(' or close parentheses ')' only.
-    Your job is to check if it is possible to concatenate the two strings in
-    some order, that the resulting string will be good.
-    A string S is considered to be good if and only if all parentheses in S
-    are balanced. For example: the string '(())()' is good, while the string
-    '())' is not.
-    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+def maximum(arr, k):
+    """
+    Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
 
-    Examples:
-    match_parens(['()(', ')']) == 'Yes'
-    match_parens([')', ')']) == 'No'
-    '''
-    def check(s):
-        val = 0
-        for i in s:
-            if i == '(':
-                val = val + 1
-            else:
-                val = val - 1
-            if val < 0:
-                return False
-        return True if val == 0 else False
+    Example 1:
 
-    S1 = lst[0] + lst[1]
-    S2 = lst[1] + lst[0]
-    return 'yes' if check(S1) or check(S2) else 'no'
-    def check(s):
-        val = 0
-        for i in s:
-            if i == '(':
-                val = val + 1
-            else:
-                val = val - 1
-            if val < 0:
-                return False
-        return True if val == 0 else False
-    S1 = lst[0] + lst[1]
-    S2 = lst[1] + lst[0]
-    return 'Yes' if check(S1) or check(S2) else 'No'
-    def check(s):
-        val = 0
-        for i in s:
-            if i == '(':
-                val = val + 1
-            else:
-                val = val - 1
-            if val < 0:
-                return False
-        return True if val == 0 else False
-    S1 = lst[0] + lst[1]
-    S2 = lst[1] + lst[0]
-    return 'Yes' if check(S1) or check(S2) else 'No'
-def check(match_parens):
+        Input: arr = [-3, -4, 5], k = 3
+        Output: [-4, -3, 5]
+
+    Example 2:
+
+        Input: arr = [4, -4, 4], k = 2
+        Output: [4, 4]
+
+    Example 3:
+
+        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1
+        Output: [2]
+
+    Note:
+        1. The length of the array will be in the range of [1, 1000].
+        2. The elements in the array will be in the range of [-1000, 1000].
+        3. 0 <= k <= len(arr)
+    """
+    if k == 0:
+        return []
+    arr.sort()
+    ans = arr[-k:]
+    return ans.sort(reverse=True)
+def check(maximum):
     # Check some simple cases
-    assert match_parens(['()(', ')']) == 'Yes'
-    assert match_parens([')', ')']) == 'No'
-check(match_parens)
+    assert maximum([-3, -4, 5], 3) == [-4, -3, 5]
+    assert maximum([4, -4, 4], 2) == [4, 4]
+    assert maximum([-3, 2, 1, 2, -1, -2, 1], 1) == [2]
+check(maximum)
