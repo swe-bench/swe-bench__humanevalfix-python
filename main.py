@@ -1,21 +1,30 @@
 
-def decimal_to_binary(decimal):
-    """You will be given a number in decimal form and your task is to convert it to
-    binary format. The function should return a string, with each character representing a binary
-    number. Each character in the string will be '0' or '1'.
-
-    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
-    The extra characters are there to help with the format.
-
-    Examples:
-    decimal_to_binary(15)   # returns "db1111db"
-    decimal_to_binary(32)   # returns "db100000db"
+def is_happy(s):
+    """You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+    For example:
+    is_happy(a) => False
+    is_happy(aa) => False
+    is_happy(abcd) => True
+    is_happy(aabb) => False
+    is_happy(adb) => True
+    is_happy(xyy) => False
     """
-    return "db" + bin(decimal)[2:] + "d"
-def check(decimal_to_binary):
+    if len(s) < 3:
+      return False
+
+    for i in range(len(s) - 2):
+      
+      if s[i] == s[i+1] and s[i+1] == s[i+2] and s[i] == s[i+2]:
+        return False
+    return True
+def check(is_happy):
     # Check some simple cases
-    assert decimal_to_binary(32) == "db100000db"
-    assert decimal_to_binary(15) == "db1111db", "This prints if this assert fails 1 (good for debugging!)"
-    # Check some edge cases that are easy to work out by hand.
-    assert True, "This prints if this assert fails 2 (also good for debugging!)"
-check(decimal_to_binary)
+    assert is_happy("a") == False , "a"
+    assert is_happy("aa") == False , "aa"
+    assert is_happy("abcd") == True , "abcd"
+    assert is_happy("aabb") == False , "aabb"
+    assert is_happy("adb") == True , "adb"
+    assert is_happy("xyy") == False , "xyy"
+check(is_happy)
