@@ -1,26 +1,32 @@
 
-def get_max_triples(n):
-    """
-    You are given a positive integer n. You have to create an integer array a of length n.
-        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
-        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
-    and a[i] + a[j] + a[k] is a multiple of 3.
-
-    Example :
-        Input: n = 5
-        Output: 1
-        Explanation: 
-        a = [1, 3, 7, 13, 21]
-        The only valid triple is (1, 7, 13).
-    """
-    A = [i*i for i in range(1,n+1)]
-    ans = []
-    for i in range(n):
-        for j in range(i+1,n):
-            for k in range(j+1,n):
-                if (A[i]+A[j]+A[k])%3 == 0:
-                    ans += [(A[i],A[j],A[k])]
-    return len(ans)
-def check(get_max_triples):
-    assert get_max_triples(5) == 1
-check(get_max_triples)
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
+    bf("Earth", "Mercury") ==> ("Venus")
+    bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    '''
+    planet_names = ("Mercury", "Venus", "Earth", "Mars", "Jupyter", "Saturn", "Uranus", "Neptune")
+    if planet1 not in planet_names or planet2 not in planet_names or planet1 == planet2:
+        return ()
+    planet1_index = planet_names.index(planet1)
+    planet2_index = planet_names.index(planet2)
+    if planet1_index < planet2_index:
+        return (planet_names[planet1_index + 1: planet2_index])
+    else:
+        return (planet_names[planet2_index + 1 : planet1_index])
+def check(bf):
+    # Check some simple cases
+    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus"), "First test error: " + str(len(bf("Jupiter", "Neptune")))      
+    assert bf("Earth", "Mercury") == ("Venus",), "Second test error: " + str(bf("Earth", "Mercury"))  
+    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn"), "Third test error: " + str(bf("Mercury", "Uranus"))      
+check(bf)
