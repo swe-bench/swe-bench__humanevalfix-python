@@ -1,25 +1,45 @@
 
-def minSubArraySum(nums):
+def max_fill(grid, capacity):
+    import math
     """
-    Given an array of integers nums, find the minimum sum of any non-empty sub-array
-    of nums.
-    Example
-    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
-    minSubArraySum([-1, -2, -3]) == -6
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
     """
-    max_sum = 0
-    s = 0
-    for num in nums:
-        s += -num
-        if (s < 0):
-            s = 0
-        max_sum = max(s, max_sum)
-    if max_sum == 0:
-        max_sum = max(-i for i in nums)
-    min_sum = min(-i for i in nums)
-    return min_sum
-def check(minSubArraySum):
+    return sum([math.floor(sum(arr)/capacity) for arr in grid])
+def check(max_fill):
     # Check some simple cases
-    assert minSubArraySum([2, 3, 4, 1, 2, 4]) == 1, "This prints if this assert fails 1 (good for debugging!)"
-    assert minSubArraySum([-1, -2, -3]) == -6
-check(minSubArraySum)
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert max_fill([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, "Error"
+    assert max_fill([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, "Error"
+    assert max_fill([[0,0,0], [0,0,0]], 5) == 0, "Error"
+    # Check some edge cases that are easy to work out by hand.
+check(max_fill)
