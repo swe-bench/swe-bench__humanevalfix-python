@@ -1,16 +1,16 @@
+from typing import List
 
 
-def greatest_common_divisor(a: int, b: int) -> int:
-    """ Return a greatest common divisor of two integers a and b
-    >>> greatest_common_divisor(3, 5)
-    1
-    >>> greatest_common_divisor(25, 15)
-    5
+def all_prefixes(string: str) -> List[str]:
+    """ Return list of all prefixes from shortest to longest of the input string
+    >>> all_prefixes('abc')
+    ['a', 'ab', 'abc']
     """
-    while b:
-        a, b = b, a % b
-    return b
-def check(greatest_common_divisor):
-    assert greatest_common_divisor(3, 5) == 1
-    assert greatest_common_divisor(25, 15) == 5
-check(greatest_common_divisor)
+    result = []
+
+    for i in range(len(string)-1):
+        result.append(string[:i+1])
+    return result
+def check(all_prefixes):
+    assert all_prefixes('abc') == ['a', 'ab', 'abc']
+check(all_prefixes)
