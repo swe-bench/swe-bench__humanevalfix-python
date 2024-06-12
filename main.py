@@ -1,19 +1,25 @@
 
-def reverse_delete(s,c):
-    """Task
-    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c
-    then check if the result string is palindrome.
-    A string is called palindrome if it reads the same backward as forward.
-    You should return a tuple containing the result string and True/False for the check.
-    Example
-    For s = "abcde", c = "ae", the result should be ('bcd',False)
-    For s = "abcdef", c = "b"  the result should be ('acdef',False)
-    For s = "abcdedcba", c = "ab", the result should be ('cdedc',True)
+def odd_count(lst):
+    """Given a list of strings, where each string consists of only digits, return a list.
+    Each element i of the output should be "the number of odd elements in the
+    string i of the input." where all the i's should be replaced by the number
+    of odd digits in the i'th string of the input.
+
+    >>> odd_count(['1234567'])
+    ["the number of odd elements 4n the str4ng 4 of the 4nput."]
+    >>> odd_count(['3',"11111111"])
+    ["the number of odd elements 1n the str1ng 1 of the 1nput.",
+     "the number of odd elements 8n the str8ng 8 of the 8nput."]
     """
-    s = ''.join([char for char in s if char not in c])
-    return (s,s[::-1] != s)
-def check(reverse_delete):
-    assert reverse_delete("abcde","ae") == ('bcd',False)
-    assert reverse_delete("abcdef", "b") == ('acdef',False)
-    assert reverse_delete("abcdedcba","ab") == ('cdedc',True)
-check(reverse_delete)
+    res = []
+    for arr in lst:
+        n = sum(int(d)%2==1 for d in arr)
+        res.append("the number of odd elements " + str(n) + "n the str"+ str(n) +"ng "+ str(n) +" of "+ str(n) +" the "+ str(n) +"nput.")
+    return res
+def check(odd_count):
+    # Check some simple cases
+    assert odd_count(['1234567']) == ["the number of odd elements 4n the str4ng 4 of the 4nput."], "Test 1"
+    assert odd_count(['3',"11111111"]) == ["the number of odd elements 1n the str1ng 1 of the 1nput.", "the number of odd elements 8n the str8ng 8 of the 8nput."], "Test 2"
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(odd_count)
