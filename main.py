@@ -1,14 +1,21 @@
 
-def add(lst):
-    """Given a non-empty list of integers lst. add the even elements that are at odd indices..
-
-
-    Examples:
-        add([4, 2, 6, 7]) ==> 2 
+def anti_shuffle(s):
     """
-    return sum([lst[i] for i in range(1, len(lst), 1) if lst[i]%2 == 0])
-def check(add):
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+    For example:
+    anti_shuffle('Hi') returns 'Hi'
+    anti_shuffle('hello') returns 'ehllo'
+    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'
+    """
+    return ''.join([''.join(sorted(list(i))) for i in s.split(' ')])
+def check(anti_shuffle):
     # Check some simple cases
-    assert add([4, 2, 6, 7]) == 2
-    # Check some edge cases that are easy to work out by hand.
-check(add)
+    assert anti_shuffle('Hi') == 'Hi'
+    assert anti_shuffle('hello') == 'ehllo'
+    assert anti_shuffle('Hello World!!!') == 'Hello !!!Wdlor'
+check(anti_shuffle)
