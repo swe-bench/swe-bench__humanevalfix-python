@@ -1,24 +1,26 @@
 
-def specialFilter(nums):
-    """Write a function that takes an array of numbers as input and returns 
-    the number of elements in the array that are greater than 10 and both 
-    first and last digits of a number are odd (1, 3, 5, 7, 9).
-    For example:
-    specialFilter([15, -73, 14, -15]) => 1 
-    specialFilter([33, -2, -3, 45, 21, 109]) => 2
+def get_max_triples(n):
     """
-    
-    count = 0
-    for num in nums:
-        if num > 10:
-            odd_digits = (1, 2, 3, 5, 7, 9)
-            number_as_string = str(num)
-            if int(number_as_string[0]) in odd_digits and int(number_as_string[-1]) in odd_digits:
-                count += 1
-        
-    return count 
-def check(specialFilter):
-    # Check some simple cases 
-    assert specialFilter([15, -73, 14, -15]) == 1
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-check(specialFilter)
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+    Example :
+        Input: n = 5
+        Output: 1
+        Explanation: 
+        a = [1, 3, 7, 13, 21]
+        The only valid triple is (1, 7, 13).
+    """
+    A = [i*i for i in range(1,n+1)]
+    ans = []
+    for i in range(n):
+        for j in range(i+1,n):
+            for k in range(j+1,n):
+                if (A[i]+A[j]+A[k])%3 == 0:
+                    ans += [(A[i],A[j],A[k])]
+    return len(ans)
+def check(get_max_triples):
+    assert get_max_triples(5) == 1
+check(get_max_triples)
