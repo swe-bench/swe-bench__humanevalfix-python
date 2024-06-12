@@ -1,50 +1,24 @@
 
-def by_length(arr):
+def f(n):
+    """ Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
+    or the sum of numbers from 1 to i otherwise.
+    i starts from 1.
+    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).
+    Example:
+    f(5) == [1, 2, 6, 24, 15]
     """
-    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
-    reverse the resulting array, and then replace each digit by its corresponding name from
-    "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine".
-
-    For example:
-      arr = [2, 1, 1, 4, 5, 8, 2, 3]   
-            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] 
-            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]
-      return ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"]
-    
-      If the array is empty, return an empty array:
-      arr = []
-      return []
-    
-      If the array has any strange number ignore it:
-      arr = [1, -1 , 55] 
-            -> sort arr -> [-1, 1, 55]
-            -> reverse arr -> [55, 1, -1]
-      return = ['One']
-    """
-    dic = {
-        1: "One",
-        2: "Two",
-        3: "Three",
-        4: "Four",
-        5: "Five",
-        6: "Six",
-        7: "Seven",
-        8: "Eight",
-        9: "Nine",
-    }
-    sorted_arr = sorted(arr)
-    new_arr = []
-    for var in sorted_arr:
-        try:
-            new_arr.append(dic[var])
-        except:
-            pass
-    return new_arr
-def check(by_length):
-    # Check some simple cases
-    assert True, "This prints if this assert fails 1 (good for debugging!)"
-    assert by_length([2, 1, 1, 4, 5, 8, 2, 3]) == ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"], "Error"
-    assert by_length([]) == [], "Error"
-    assert by_length([1, -1 , 55]) == ['One'], "Error"
-    # Check some edge cases that are easy to work out by hand.
-check(by_length)
+    ret = []
+    for i in range(1,n+1):
+        if i%2 == 0:
+            x = 1
+            for j in range(1,i+1): x *= i
+            ret += [x]
+        else:
+            x = 0
+            for j in range(1,i+1): x += j
+            ret += [x]
+    return ret
+def check(f):
+    assert f(5) == [1, 2, 6, 24, 15]
+check(f)
