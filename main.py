@@ -1,28 +1,50 @@
 
-def unique_digits(x):
-    """Given a list of positive integers x. return a sorted list of all 
-    elements that hasn't any even digit.
-
-    Note: Returned list should be sorted in increasing order.
-    
-    For example:
-    >>> unique_digits([15, 33, 1422, 1])
-    [1, 15, 33]
-    >>> unique_digits([152, 323, 1422, 10])
-    []
+def by_length(arr):
     """
-    odd_digit_elements = []
-    for j, i in enumerate(x):
-        if all (int(c) % 2 == 1 for c in str(i)):
-            odd_digit_elements.append(i)
-            odd_digit_elements.append(j)
-    return sorted(odd_digit_elements)
-def check(unique_digits):
+    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
+    reverse the resulting array, and then replace each digit by its corresponding name from
+    "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine".
+
+    For example:
+      arr = [2, 1, 1, 4, 5, 8, 2, 3]   
+            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] 
+            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]
+      return ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"]
+    
+      If the array is empty, return an empty array:
+      arr = []
+      return []
+    
+      If the array has any strange number ignore it:
+      arr = [1, -1 , 55] 
+            -> sort arr -> [-1, 1, 55]
+            -> reverse arr -> [55, 1, -1]
+      return = ['One']
+    """
+    dic = {
+        1: "One",
+        2: "Two",
+        3: "Three",
+        4: "Four",
+        5: "Five",
+        6: "Six",
+        7: "Seven",
+        8: "Eight",
+        9: "Nine",
+    }
+    sorted_arr = sorted(arr)
+    new_arr = []
+    for var in sorted_arr:
+        try:
+            new_arr.append(dic[var])
+        except:
+            pass
+    return new_arr
+def check(by_length):
     # Check some simple cases
-    assert unique_digits([15, 33, 1422, 1]) == [1, 15, 33]
-    assert unique_digits([152, 323, 1422, 10]) == []
-    assert unique_digits([12345, 2033, 111, 151]) == [111, 151]
-    assert unique_digits([135, 103, 31]) == [31, 135]
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert by_length([2, 1, 1, 4, 5, 8, 2, 3]) == ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"], "Error"
+    assert by_length([]) == [], "Error"
+    assert by_length([1, -1 , 55]) == ['One'], "Error"
     # Check some edge cases that are easy to work out by hand.
-    assert True
-check(unique_digits)
+check(by_length)
