@@ -1,18 +1,25 @@
 
 
-def max_element(l: list):
-    """Return maximum element in the list.
-    >>> max_element([1, 2, 3])
+def fizz_buzz(n: int):
+    """Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
     3
-    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
-    123
     """
-    m = l[0]
-    for e in l:
-        if e < m:
-            m = e
-    return m
-def check(max_element):
-    assert max_element([1, 2, 3]) == 3
-    assert max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]) == 123
-check(max_element)
+    ns = []
+    for i in range(n):
+        if i % 11 == 0 and i % 13 == 0:
+            ns.append(i)
+    s = ''.join(list(map(str, ns)))
+    ans = 0
+    for c in s:
+        ans += (c == '7')
+    return ans
+def check(fizz_buzz):
+    assert fizz_buzz(50) == 0
+    assert fizz_buzz(78) == 2
+    assert fizz_buzz(79) == 3
+check(fizz_buzz)
