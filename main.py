@@ -1,24 +1,8 @@
 
-def prime_length(string):
-    """Write a function that takes a string and returns True if the string
-    length is a prime number or False otherwise
-    Examples
-    prime_length('Hello') == True
-    prime_length('abcdcba') == True
-    prime_length('kittens') == True
-    prime_length('orange') == False
+def starts_one_ends(n):
     """
-    l = len(string)
-    if l == 0 or l == 1:
-        return False
-    for i in range(3, l):
-        if l % i == 0:
-            return False
-    return True
-def check(prime_length):
-    # Check some simple cases
-    assert prime_length('Hello') == True
-    assert prime_length('abcdcba') == True
-    assert prime_length('kittens') == True
-    assert prime_length('orange') == False
-check(prime_length)
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+    if n == 1: return 1
+    return 18 * n * (10 ** (n - 2))
