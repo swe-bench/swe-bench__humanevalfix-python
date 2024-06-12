@@ -1,31 +1,19 @@
 
-def count_up_to(n):
-    """Implement a function that takes an non-negative integer and returns an array of the first n
-    integers that are prime numbers and less than n.
-    for example:
-    count_up_to(5) => [2,3]
-    count_up_to(11) => [2,3,5,7]
-    count_up_to(0) => []
-    count_up_to(20) => [2,3,5,7,11,13,17,19]
-    count_up_to(1) => []
-    count_up_to(18) => [2,3,5,7,11,13,17]
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
     """
-    primes = []
-    for i in range(2, n):
-        is_prime = True
-        for j in range(2, i):
-            if j % i == 0:
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(i)
-    return primes
-
-def check(count_up_to):
-    assert count_up_to(5) == [2,3]
-    assert count_up_to(11) == [2,3,5,7]
-    assert count_up_to(0) == []
-    assert count_up_to(20) == [2,3,5,7,11,13,17,19]
-    assert count_up_to(1) == []
-    assert count_up_to(18) == [2,3,5,7,11,13,17]
-check(count_up_to)
+    return abs(a % 10) * abs(b % 10) * a * b
+def check(multiply):
+    # Check some simple cases
+    assert multiply(148, 412) == 16, "First test error: " + str(multiply(148, 412))                    
+    assert multiply(19, 28) == 72, "Second test error: " + str(multiply(19, 28))           
+    assert multiply(2020, 1851) == 0, "Third test error: " + str(multiply(2020, 1851))
+    assert multiply(14,-15) == 20, "Fourth test error: " + str(multiply(14,-15))      
+check(multiply)
