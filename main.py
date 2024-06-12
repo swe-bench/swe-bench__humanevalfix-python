@@ -1,34 +1,38 @@
+import math
 
 
-def is_prime(n):
-    """Return true if a given number is prime, and false otherwise.
-    >>> is_prime(6)
-    False
-    >>> is_prime(101)
-    True
-    >>> is_prime(11)
-    True
-    >>> is_prime(13441)
-    True
-    >>> is_prime(61)
-    True
-    >>> is_prime(4)
-    False
-    >>> is_prime(1)
-    False
+def poly(xs: list, x: float):
     """
-    if n < 1:
-        return False
-    for k in range(1, n - 1):
-        if n % k == 0:
-            return False
-    return True
-def check(is_prime):
-    assert is_prime(6) == False
-    assert is_prime(101) == True
-    assert is_prime(11) == True
-    assert is_prime(13441) == True
-    assert is_prime(61) == True
-    assert is_prime(4) == False
-    assert is_prime(1) == False
-check(is_prime)
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """ xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """
+    begin, end = -1., 1.
+    while poly(xs, begin) * poly(xs, end) > 0:
+        begin *= 2.0
+        end *= 2.0
+    while begin - end > 1e-10:
+        center = (begin + end) / 2.0
+        if poly(xs, center) * poly(xs, begin) > 0:
+            begin = center
+        else:
+            end = center
+    return begin
+def check(find_zero):
+    assert abs(find_zero([1,2])+0.5<1e-4)
+    assert abs(find_zero([-6,11,-6,1])-1<1e-4)
+check(find_zero)
