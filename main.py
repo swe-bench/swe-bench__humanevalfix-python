@@ -1,30 +1,19 @@
 
 
-def correct_bracketing(brackets: str):
-    """ brackets is a string of "<" and ">".
-    return True if every opening bracket has a corresponding closing bracket.
-
-    >>> correct_bracketing("<")
-    False
-    >>> correct_bracketing("<>")
+def monotonic(l: list):
+    """Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
     True
-    >>> correct_bracketing("<<><>>")
-    True
-    >>> correct_bracketing("><<>")
+    >>> monotonic([1, 20, 4, 10])
     False
+    >>> monotonic([4, 1, 0, -10])
+    True
     """
-    depth = 0
-    for b in brackets:
-        if b == ">":
-            depth += 1
-        else:
-            depth -= 1
-        if depth < 0:
-            return False
-    return depth == 0
-def check(correct_bracketing):
-    assert correct_bracketing("<>")
-    assert correct_bracketing("<<><>>")
-    assert not correct_bracketing("><<>")
-    assert not correct_bracketing("<")
-check(correct_bracketing)
+    if l == sorted(l) or l == sorted(l, reverse=True):
+        return False
+    return True
+def check(monotonic):
+    assert monotonic([1, 2, 4, 10]) == True
+    assert monotonic([1, 20, 4, 10]) == False
+    assert monotonic([4, 1, 0, -10]) == True
+check(monotonic)
