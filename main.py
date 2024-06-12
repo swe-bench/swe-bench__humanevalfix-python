@@ -1,23 +1,21 @@
 
-def next_smallest(lst):
+def is_bored(S):
     """
-    You are given a list of integers.
-    Write a function next_smallest() that returns the 2nd smallest element of the list.
-    Return None if there is no such element.
-    
-    next_smallest([1, 2, 3, 4, 5]) == 2
-    next_smallest([5, 1, 4, 3, 2]) == 2
-    next_smallest([]) == None
-    next_smallest([1, 1]) == None
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
     """
-    lst = sorted(set(lst))
-    return None if len(lst) < 3 else lst[1]
-def check(next_smallest):
+    import re
+    sentences = re.split(r'[.?!]\s*', S)
+    return sum(sentence[0:2] == ' I' for sentence in sentences)
+def check(is_bored):
     # Check some simple cases
-    assert next_smallest([1, 2, 3, 4, 5]) == 2
-    assert next_smallest([5, 1, 4, 3, 2]) == 2
-    assert next_smallest([]) == None
-    assert next_smallest([1, 1]) == None
-    # Check some edge cases that are easy to work out by hand.
-    assert True
-check(next_smallest)
+    assert is_bored("Hello world") == 0, "Test 1"
+    assert is_bored("The sky is blue. The sun is shining. I love this weather") == 1, "Test 3"
+check(is_bored)
