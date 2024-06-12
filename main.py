@@ -1,29 +1,23 @@
 
 
-def pairs_sum_to_zero(l):
+def change_base(x: int, base: int):
+    """Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
     """
-    pairs_sum_to_zero takes a list of integers as an input.
-    it returns True if there are two distinct elements in the list that
-    sum to zero, and False otherwise.
-    >>> pairs_sum_to_zero([1, 3, 5, 0])
-    False
-    >>> pairs_sum_to_zero([1, 3, -2, 1])
-    False
-    >>> pairs_sum_to_zero([1, 2, 3, 7])
-    False
-    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
-    True
-    >>> pairs_sum_to_zero([1])
-    False
-    """
-    for i, l1 in enumerate(l):
-        for j in range(i, len(l)):
-            if l1 + l[j] == 0:
-                return True
-    return False
-def check(pairs_sum_to_zero):
-    assert pairs_sum_to_zero([1, 3, 5, 0]) == False
-    assert pairs_sum_to_zero([1, 3, -2, 1]) == False
-    assert pairs_sum_to_zero([1, 2, 3, 7]) == False
-    assert pairs_sum_to_zero([2, 4, -5, 3, 5, 7]) == True
-check(pairs_sum_to_zero)
+    ret = ""
+    while x > 0:
+        ret = str(x % base) + ret
+        x -= base
+    return ret
+def check(change_base):
+    assert change_base(8, 3) == "22"
+    assert change_base(8, 2) == "1000"
+    assert change_base(7, 2) == "111"
+check(change_base)
