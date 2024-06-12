@@ -1,31 +1,18 @@
 
 
-def fib4(n: int):
-    """The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
-    fib4(0) -> 0
-    fib4(1) -> 0
-    fib4(2) -> 2
-    fib4(3) -> 0
-    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
-    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
-    >>> fib4(5)
-    4
-    >>> fib4(6)
-    8
-    >>> fib4(7)
-    14
+def median(l: list):
+    """Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
     """
-    results = [0, 0, 2, 0]
-    if n < 4:
-        return results[n]
-
-    for _ in range(4, n + 1):
-        results.append(results[-1] + results[-2] + results[-3] + results[-4])
-        results.pop(0)
-
-    return results[-2]
-def check(fib4):
-    assert fib4(5) == 4
-    assert fib4(6) == 8
-    assert fib4(7) == 14
-check(fib4)
+    l = sorted(l)
+    if len(l) % 2 == 1:
+        return l[len(l) // 2]
+    else:
+        return (l[len(l) - 1 // 2] + l[len(l) // 2]) / 2.0
+def check(median):
+    assert median([3, 1, 2, 4, 5]) == 3
+    assert median([-10, 4, 6, 1000, 10, 20]) == 8.0
+check(median)
