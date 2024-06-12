@@ -1,29 +1,26 @@
 
-def is_simple_power(x, n):
-    """Your task is to write a function that returns true if a number x is a simple
-    power of n and false in other cases.
-    x is a simple power of n if n**int=x
-    For example:
-    is_simple_power(1, 4) => true
-    is_simple_power(2, 2) => true
-    is_simple_power(8, 2) => true
-    is_simple_power(3, 2) => false
-    is_simple_power(3, 1) => false
-    is_simple_power(5, 3) => false
-    """
-    if (n == 1): 
-        return (x == 1) 
-    power = 1
-    while (n < x): 
-        power = power * n 
-    return (power == x) 
-def check(is_simple_power):
+def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+    Examples:
+    iscube(1) ==> True
+    iscube(2) ==> False
+    iscube(-1) ==> True
+    iscube(64) ==> True
+    iscube(0) ==> True
+    iscube(180) ==> False
+    '''
+    a = abs(a)
+    return int(round(a ** (1. / 3))) == a
+def check(iscube):
     # Check some simple cases
-    assert is_simple_power(1, 4)== True, "This prints if this assert fails 1 (good for debugging!)"
-    assert is_simple_power(2, 2)==True, "This prints if this assert fails 1 (good for debugging!)"
-    assert is_simple_power(8, 2)==True, "This prints if this assert fails 1 (good for debugging!)"
-    assert is_simple_power(3, 2)==False, "This prints if this assert fails 1 (good for debugging!)"
-    assert is_simple_power(3, 1)==False, "This prints if this assert fails 1 (good for debugging!)"
-    assert is_simple_power(5, 3)==False, "This prints if this assert fails 1 (good for debugging!)"
+    assert iscube(1) == True, "First test error: " + str(iscube(1))
+    assert iscube(2) == False, "Second test error: " + str(iscube(2))
+    assert iscube(-1) == True, "Third test error: " + str(iscube(-1))
+    assert iscube(64) == True, "Fourth test error: " + str(iscube(64))
+    assert iscube(180) == False, "Fifth test error: " + str(iscube(180))
     # Check some edge cases that are easy to work out by hand.
-check(is_simple_power)
+    assert iscube(0) == True, "1st edge test error: " + str(iscube(0))
+check(iscube)
