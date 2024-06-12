@@ -1,17 +1,18 @@
 
-def right_angle_triangle(a, b, c):
-    '''
-    Given the lengths of the three sides of a triangle. Return True if the three
-    sides form a right-angled triangle, False otherwise.
-    A right-angled triangle is a triangle in which one angle is right angle or 
-    90 degree.
-    Example:
-    right_angle_triangle(3, 4, 5) == True
-    right_angle_triangle(1, 2, 3) == False
-    '''
-    return c*c == a*a + b*b
-def check(right_angle_triangle):
+def find_max(words):
+    """Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max(["name", "of", "string"]) == "string"
+    find_max(["name", "enam", "game"]) == "enam"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
+    """
+    return sorted(words)[0]
+def check(find_max):
     # Check some simple cases
-    assert right_angle_triangle(3, 4, 5) == True, "This prints if this assert fails 1 (good for debugging!)"
-    assert right_angle_triangle(1, 2, 3) == False
-check(right_angle_triangle)
+    assert (find_max(["name", "of", "string"]) == "string"), "t1"
+    assert (find_max(["name", "enam", "game"]) == "enam"), 't2'
+    assert (find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"), 't3'
+check(find_max)
