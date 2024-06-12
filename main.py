@@ -1,38 +1,43 @@
 
-def is_sorted(lst):
-    '''
-    Given a list of numbers, return whether or not they are sorted
-    in ascending order. If list has more than 1 duplicate of the same
-    number, return False. Assume no negative numbers and only integers.
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
 
-    Examples
-    is_sorted([5]) ➞ True
-    is_sorted([1, 2, 3, 4, 5]) ➞ True
-    is_sorted([1, 3, 2, 4, 5]) ➞ False
-    is_sorted([1, 2, 3, 4, 5, 6]) ➞ True
-    is_sorted([1, 2, 3, 4, 5, 6, 7]) ➞ True
-    is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
-    is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
-    is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
-    '''
-    count_digit = dict([(i, 0) for i in lst])
-    for i in lst:
-        count_digit[i]+=1
-    if all(lst[i-1] <= lst[i] for i in range(1, len(lst))):
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+    def is_prime(num):
+        if num == 1 or num == 0:
+            return False
+        if num == 2:
+            return True
+        for i in range(2, num):
+            if num%i == 0:
+                return False
         return True
-    else:
-        return False
-    
-    
-def check(is_sorted):
+
+    l = max(interval1[0], interval2[0])
+    r = min(interval1[1], interval2[1])
+    length = r - l
+    if length > 0:
+        return "YES"
+    return "NO"
+def check(intersection):
     # Check some simple cases
-    assert is_sorted([5]) == True
-    assert is_sorted([1, 2, 3, 4, 5]) == True
-    assert is_sorted([1, 3, 2, 4, 5]) == False
-    assert is_sorted([1, 2, 3, 4, 5, 6]) == True
-    assert is_sorted([1, 2, 3, 4, 5, 6, 7]) == True
-    assert is_sorted([1, 3, 2, 4, 5, 6, 7]) == False, "This prints if this assert fails 1 (good for debugging!)"
-    # Check some edge cases that are easy to work out by hand.
-    assert is_sorted([1, 2, 2, 2, 3, 4]) == False, "This prints if this assert fails 5 (good for debugging!)"
-    assert is_sorted([1, 2, 2, 3, 3, 4]) == True, "This prints if this assert fails 7 (good for debugging!)"
-check(is_sorted)
+    assert intersection((1, 2), (2, 3)) == "NO"
+    assert intersection((-1, 1), (0, 4)) == "NO"
+    assert intersection((-3, -1), (-5, 5)) == "YES"
+check(intersection)
