@@ -1,16 +1,14 @@
 
-def solve(N):
-    """Given a positive integer N, return the total sum of its digits in binary.
-    
-    Example
-        For N = 1000, the sum of digits will be 1 the output should be "1".
-        For N = 150, the sum of digits will be 6 the output should be "110".
-        For N = 147, the sum of digits will be 12 the output should be "1100".
-    
-    Variables:
-        @N integer
-             Constraints: 0 ≤ N ≤ 10000.
-    Output:
-         a string of binary number
+def add(lst):
+    """Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+    Examples:
+        add([4, 2, 6, 7]) ==> 2 
     """
-    return bin([int(i) for i in str(N)][-1])[2:]
+    return sum([lst[i] for i in range(1, len(lst), 1) if lst[i]%2 == 0])
+def check(add):
+    # Check some simple cases
+    assert add([4, 2, 6, 7]) == 2
+    # Check some edge cases that are easy to work out by hand.
+check(add)
