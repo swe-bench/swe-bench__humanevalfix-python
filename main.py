@@ -1,30 +1,35 @@
 
-
-
-def sum_squares(lst):
+def words_in_sentence(sentence):
     """
-    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
-    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
-    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
-    
-    Examples:
-    For lst = [1,2,3] the output should be 6
-    For lst = []  the output should be 0
-    For lst = [-1,-5,2,-1,-5]  the output should be -126
+    You are given a string representing a sentence,
+    the sentence contains some words separated by a space,
+    and you have to return a string that contains the words from the original sentence,
+    whose lengths are prime numbers,
+    the order of the words in the new string should be the same as the original one.
+
+    Example 1:
+        Input: sentence = "This is a test"
+        Output: "is"
+
+    Example 2:
+        Input: sentence = "lets go for swimming"
+        Output: "go for"
+
+    Constraints:
+        * 1 <= len(sentence) <= 100
+        * sentence contains only letters
     """
-    result =[]
-    for i in range(len(lst)):
-        if i %3 == 0:
-            result.append(lst[i]**2)
-        elif i%3 != 0:
-            result.append(lst[i]**3)
-        else:
-            result.append(lst[i])
-    return sum(result)
-def check(sum_squares):
+    new_lst = []
+    for word in sentence.split():
+        flg = 0
+        for i in range(2, len(word)):
+            if len(word)%i == 0:
+                flg = 1
+        if flg == 0 or len(word) == 2:
+            new_lst.append(word)
+    return " ".join(new_lst)
+def check(words_in_sentence):
     # Check some simple cases
-    assert sum_squares([1,2,3]) == 6
-    assert sum_squares([]) == 0
-    assert sum_squares([-1,-5,2,-1,-5]) == -126
-    # Don't remove this line:
-check(sum_squares)
+    assert words_in_sentence("This is a test") == "is"
+    assert words_in_sentence("lets go for swimming") == "go for"
+check(words_in_sentence)
