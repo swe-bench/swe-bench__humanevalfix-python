@@ -1,31 +1,17 @@
 
-def int_to_mini_roman(number):
-    """
-    Given a positive integer, obtain its roman numeral equivalent as a string,
-    and return it in lowercase.
-    Restrictions: 1 <= num <= 1000
-
-    Examples:
-    >>> int_to_mini_roman(19) == 'xix'
-    >>> int_to_mini_roman(152) == 'clii'
-    >>> int_to_mini_roman(426) == 'cdxxvi'
-    """
-    num = [1, 4, 5, 9, 10, 40, 50, 90,  
-           100, 400, 500, 900, 1000] 
-    sym = ["I", "IV", "V", "IX", "X", "XL",  
-           "L", "XC", "C", "CD", "D", "CM", "M"] 
-    i = 12
-    res = ''
-    while number: 
-        div = number // num[i] 
-        number %= num[i] 
-        while div: 
-            res += sym[i]
-        i -= 1
-    return res.lower()
-def check(int_to_mini_roman):
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+    return c*c == a*a + b*b
+def check(right_angle_triangle):
     # Check some simple cases
-    assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(152) == 'clii'
-    assert int_to_mini_roman(426) == 'cdxxvi'
-check(int_to_mini_roman)
+    assert right_angle_triangle(3, 4, 5) == True, "This prints if this assert fails 1 (good for debugging!)"
+    assert right_angle_triangle(1, 2, 3) == False
+check(right_angle_triangle)
