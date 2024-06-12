@@ -1,45 +1,22 @@
 
-def closest_integer(value):
-    '''
-    Create a function that takes a value (string) representing a number
-    and returns the closest integer to it. If the number is equidistant
-    from two integers, round it away from zero.
+def make_a_pile(n):
+    """
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
 
-    Examples
-    >>> closest_integer("10")
-    10
-    >>> closest_integer("15.3")
-    15
-
-    Note:
-    Rounding away from zero means that if the given number is equidistant
-    from two integers, the one you should return is the one that is the
-    farthest from zero. For example closest_integer("14.5") should
-    return 15 and closest_integer("-14.5") should return -15.
-    '''
-    from math import floor, ceil
-
-    if value.count('.') == 1:
-        # remove trailing zeros
-        while (value[-1] == '0'):
-            value = value[:-1]
-
-    num = float(value)
-    if value[-2:] == '.5':
-        if num > 0:
-            res = floor(num)
-        else:
-            res = ceil(num)
-    elif len(value) > 0:
-        res = int(round(num))
-    else:
-        res = 0
-
-    return res
-
-def check(closest_integer):
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """
+    return [n + 2*i + i for i in range(n)]
+def check(make_a_pile):
     # Check some simple cases
-    assert closest_integer("10") == 10, "Test 1"
-    assert closest_integer("15.3") == 15, "Test 3"
+    assert make_a_pile(3) == [3, 5, 7], "Test 3"
     # Check some edge cases that are easy to work out by hand.
-check(closest_integer)
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(make_a_pile)
