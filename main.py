@@ -1,29 +1,22 @@
 
-def words_string(s):
-    """
-    You will be given a string of words separated by commas or spaces. Your task is
-    to split the string into words and return an array of the words.
-    
+def choose_num(x, y):
+    """This function takes two positive numbers x and y and returns the
+    biggest even integer number that is in the range [x, y] inclusive. If 
+    there's no such number, then the function should return -1.
+
     For example:
-    words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
-    words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
+    choose_num(12, 15) = 14
+    choose_num(13, 12) = -1
     """
-    if not s:
-        return []
-
-    s_list = []
-
-    for letter in s:
-        if letter == ',':
-            s_list.append(',')
-        else:
-            s_list.append(letter)
-
-    s_list = "".join(s_list)
-    return s_list.split()
-def check(words_string):
+    if x > y:
+        return -1
+    if y % 2 == 0:
+        return y
+    if x == y:
+        return -1
+    return x - 1
+def check(choose_num):
     # Check some simple cases
-    assert True, "This prints if this assert fails 1 (good for debugging!)"
-    assert words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
-    assert words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
-check(words_string)
+    assert choose_num(12, 15) == 14
+    assert choose_num(13, 12) == -1
+check(choose_num)
