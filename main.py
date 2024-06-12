@@ -1,22 +1,33 @@
 
-def sort_array(arr):
+def select_words(s, n):
+    """Given a string s and a natural number n, you have been tasked to implement 
+    a function that returns a list of all words from string s that contain exactly 
+    n consonants, in order these words appear in the string s.
+    If the string s is empty then the function should return an empty list.
+    Note: you may assume the input string contains only letters and spaces.
+    Examples:
+    select_words("Mary had a little lamb", 4) ==> ["little"]
+    select_words("Mary had a little lamb", 3) ==> ["Mary", "lamb"]
+    select_words("simple white space", 2) ==> []
+    select_words("Hello world", 4) ==> ["world"]
+    select_words("Uncle sam", 3) ==> ["Uncle"]
     """
-    In this Kata, you have to sort an array of non-negative integers according to
-    number of ones in their binary representation in ascending order.
-    For similar number of ones, sort based on decimal value.
+    result = []
+    for word in s.split():
+        n_consonants = 0
+        for i in range(0, len(word)):
+            if word[i].lower() in ["a","e","i","o","u"]:
+                n_consonants += 1 
+        if n_consonants == n:
+            result.append(word)
+    return result
 
-    It must be implemented like this:
-    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
-    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
-    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]
-    """
-    return sorted(sorted(arr), key=lambda x: arr.count('1'))
-def check(sort_array):
+def check(select_words):
     # Check some simple cases
-    assert True, "This prints if this assert fails 1 (good for debugging!)"
-    assert sort_array([1,5,2,3,4]) == [1, 2, 4, 3, 5]
-    assert sort_array([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]
-    assert sort_array([1,0,2,3,4]) == [0, 1, 2, 4, 3]
+    assert select_words("Mary had a little lamb", 4) == ["little"], "First test error: " + str(select_words("Mary had a little lamb", 4))      
+    assert select_words("Mary had a little lamb", 3) == ["Mary", "lamb"], "Second test error: " + str(select_words("Mary had a little lamb", 3))  
+    assert select_words("simple white space", 2) == [], "Third test error: " + str(select_words("simple white space", 2))      
+    assert select_words("Hello world", 4) == ["world"], "Fourth test error: " + str(select_words("Hello world", 4))  
+    assert select_words("Uncle sam", 3) == ["Uncle"], "Fifth test error: " + str(select_words("Uncle sam", 3))
     # Check some edge cases that are easy to work out by hand.
-    assert True, "This prints if this assert fails 2 (also good for debugging!)"
-check(sort_array)
+check(select_words)
