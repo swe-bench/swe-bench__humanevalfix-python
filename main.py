@@ -1,30 +1,21 @@
 
-def cycpattern_check(a , b):
-    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
-    cycpattern_check("abcd","abd") => False
-    cycpattern_check("hello","ell") => True
-    cycpattern_check("whassup","psus") => False
-    cycpattern_check("abab","baa") => True
-    cycpattern_check("efef","eeff") => False
-    cycpattern_check("himenss","simen") => True
+def even_odd_count(num):
+    """Given an integer. return a tuple that has the number of even and odd digits respectively.
 
+     Example:
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
     """
-    l = len(b)
-    pat = b + b
-    for i in range(len(a) - l + 1):
-        for j in range(len(b) - l + 1):
-            if a[i:i+l] == pat[j:j+l]:
-                return True
-    return False
-def check(cycpattern_check):
+    even_count = 0
+    odd_count = 0
+    for i in str(abs(num)):
+        if int(i)%2==0:
+            even_count +=1
+    return (even_count, odd_count)
+def check(even_odd_count):
     # Check some simple cases
-    #assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert even_odd_count(-12) == (1, 1)
+    assert even_odd_count(123) == (1, 2)
     # Check some edge cases that are easy to work out by hand.
-    #assert True, "This prints if this assert fails 2 (also good for debugging!)"
-    assert  cycpattern_check("abcd","abd") == False , "test #0"
-    assert  cycpattern_check("hello","ell") == True , "test #1"
-    assert  cycpattern_check("whassup","psus") == False , "test #2"
-    assert  cycpattern_check("abab","baa") == True , "test #3"
-    assert  cycpattern_check("efef","eeff") == False , "test #4"
-    assert  cycpattern_check("himenss","simen") == True , "test #5"
-check(cycpattern_check)
+    assert True
+check(even_odd_count)
