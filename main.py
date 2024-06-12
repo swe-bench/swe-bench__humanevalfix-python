@@ -1,23 +1,30 @@
 
 
-def fib(n: int):
-    """Return n-th Fibonacci number.
-    >>> fib(10)
-    55
-    >>> fib(1)
-    1
-    >>> fib(8)
-    21
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "<" and ">".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("<")
+    False
+    >>> correct_bracketing("<>")
+    True
+    >>> correct_bracketing("<<><>>")
+    True
+    >>> correct_bracketing("><<>")
+    False
     """
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
-    if n == 2:
-        return 2
-    return fib(n - 1) + fib(n - 2)
-def check(fib):
-    assert fib(10) == 55
-    assert fib(1) == 1
-    assert fib(8) == 21
-check(fib)
+    depth = 0
+    for b in brackets:
+        if b == ">":
+            depth += 1
+        else:
+            depth -= 1
+        if depth < 0:
+            return False
+    return depth == 0
+def check(correct_bracketing):
+    assert correct_bracketing("<>")
+    assert correct_bracketing("<<><>>")
+    assert not correct_bracketing("><<>")
+    assert not correct_bracketing("<")
+check(correct_bracketing)
