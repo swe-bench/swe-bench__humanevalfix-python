@@ -1,30 +1,33 @@
 
-def do_algebra(operator, operand):
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
     """
-    Given two lists operator, and operand. The first list has basic algebra operations, and 
-    the second list is a list of integers. Use the two given lists to build the algebric 
-    expression and return the evaluation of this expression.
-
-    The basic algebra operations:
-    Addition ( + ) 
-    Subtraction ( - ) 
-    Multiplication ( * ) 
-    Floor division ( // ) 
-    Exponentiation ( ** ) 
-
-    Example:
-    operator['+', '*', '-']
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4 - 5
-    => result = 9
-
-    Note:
-        The length of operator list is equal to the length of operand list minus one.
-        Operand is a list of of non-negative integers.
-        Operator list has at least one operator, and operand list has at least two operands.
-
-    """
-    expression = str(operand[0])
-    for oprt, oprn in zip(operator, operand[1:]):
-        expression+=expression + oprt + str(oprn)
-    return eval(expression)
+    flg = 0
+    idx = 0
+    new_str = list(s)
+    for i in s:
+        if i.isalpha():
+            new_str[idx] = i
+            flg = 1
+        idx += 1
+    s = ""
+    for i in new_str:
+        s += i
+    if flg == 0:
+        return s[len(s)::-1]
+    return s
+def check(solve):
+    # Check some simple cases
+    assert solve("1234") == "4321"
+    assert solve("ab") == "AB"
+    assert solve("#a@C") == "#A@c"
+    # Don't remove this line:
+check(solve)
