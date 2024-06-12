@@ -1,25 +1,38 @@
 
-def smallest_change(arr):
-    """
-    Given an array arr of integers, find the minimum number of elements that
-    need to be changed to make the array palindromic. A palindromic array is an array that
-    is read the same backwards and forwards. In one change, you can change one element to any other element.
+def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
 
-    For example:
-    smallest_change([1,2,3,5,4,7,9,6]) == 4
-    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
-    smallest_change([1, 2, 3, 2, 1]) == 0
-    """
-    ans = 0
-    for i in range(len(arr) // 2):
-        if ans != arr[len(arr) - i - 1]:
-            ans += 1
-    return ans
-def check(smallest_change):
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], []) ➞ []
+    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']
+    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']
+    '''
+    l1 = 0
+    for st in lst1:
+        l1 += len(st)
+    
+    l2 = 0
+    for st in lst2:
+        l2 += len(st)
+    
+    if l1 <= l2:
+        return lst2
+    else:
+        return lst1
+def check(total_match):
     # Check some simple cases
-    assert smallest_change([1,2,3,5,4,7,9,6]) == 4
-    assert smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert total_match([], []) == []
+    assert total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']
+    assert total_match(['4'], ['1', '2', '3', '4', '5']) == ['4']
+    assert total_match(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']
+    assert total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']
     # Check some edge cases that are easy to work out by hand.
-    assert smallest_change([1, 2, 3, 2, 1]) == 0
-    assert smallest_change([3, 1, 1, 3]) == 0
-check(smallest_change)
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+check(total_match)
