@@ -1,18 +1,24 @@
 
 
-def median(l: list):
-    """Return median of elements in the list l.
-    >>> median([3, 1, 2, 4, 5])
-    3
-    >>> median([-10, 4, 6, 1000, 10, 20])
-    15.0
+def is_palindrome(text: str):
     """
-    l = sorted(l)
-    if len(l) % 2 == 1:
-        return l[len(l) // 2]
-    else:
-        return (l[len(l) - 1 // 2] + l[len(l) // 2]) / 2.0
-def check(median):
-    assert median([3, 1, 2, 4, 5]) == 3
-    assert median([-10, 4, 6, 1000, 10, 20]) == 8.0
-check(median)
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+    for i in range(len(text)):
+        if text[i] != text[len(text) - i]:
+            return False
+    return True
+def check(is_palindrome):
+    assert is_palindrome('') == True
+    assert is_palindrome('aba') == True
+    assert is_palindrome('aaaaa') == True
+    assert is_palindrome('zbcd') == False
+check(is_palindrome)
