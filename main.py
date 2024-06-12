@@ -1,24 +1,26 @@
 
 
-def is_palindrome(text: str):
+def modp(n: int, p: int):
+    """Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
     """
-    Checks if given string is a palindrome
-    >>> is_palindrome('')
-    True
-    >>> is_palindrome('aba')
-    True
-    >>> is_palindrome('aaaaa')
-    True
-    >>> is_palindrome('zbcd')
-    False
-    """
-    for i in range(len(text)):
-        if text[i] != text[len(text) - i]:
-            return False
-    return True
-def check(is_palindrome):
-    assert is_palindrome('') == True
-    assert is_palindrome('aba') == True
-    assert is_palindrome('aaaaa') == True
-    assert is_palindrome('zbcd') == False
-check(is_palindrome)
+    ret = 0
+    for i in range(n):
+        ret = (2 * ret) % p
+    return ret
+def check(modp):
+    assert modp(3, 5) == 3
+    assert modp(1101, 101) == 2
+    assert modp(0, 101) == 1
+    assert modp(3, 11) == 8
+    assert modp(100, 101) == 1
+check(modp)
